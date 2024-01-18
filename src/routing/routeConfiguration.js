@@ -35,6 +35,7 @@ const SearchPageWithGrid = loadable(() => import(/* webpackChunkName: "SearchPag
 const StripePayoutPage = loadable(() => import(/* webpackChunkName: "StripePayoutPage" */ '../containers/StripePayoutPage/StripePayoutPage'));
 const TermsOfServicePage = loadable(() => import(/* webpackChunkName: "TermsOfServicePage" */ '../containers/TermsOfServicePage/TermsOfServicePage'));
 const TransactionPage = loadable(() => import(/* webpackChunkName: "TransactionPage" */ '../containers/TransactionPage/TransactionPage'));
+const FavoriteListingsPage = loadable(() => import(/* webpackChunkName: "FavoriteListingsPage" */ '../containers/FavoriteListingsPage/FavoriteListingsPage'));
 
 // Styleguide helps you to review current components and develop new ones
 const StyleguidePage = loadable(() => import(/* webpackChunkName: "StyleguidePage" */ '../containers/StyleguidePage/StyleguidePage'));
@@ -137,6 +138,15 @@ const routeConfiguration = (layoutConfig) => {
       auth: true,
       component: EditListingPage,
       loadData: pageDataLoadingAPI.EditListingPage.loadData,
+    },
+
+    {
+      path: '/favorites',
+      name: 'FavoriteListingsPage',
+      auth: true, // user must be signed in to view this page
+      authPage: 'LoginPage',
+      component: FavoriteListingsPage,
+      loadData: pageDataLoadingAPI.FavoriteListingsPage.loadData,
     },
 
     // Canonical path should be after the `/l/new` path since they

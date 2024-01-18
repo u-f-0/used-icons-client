@@ -129,6 +129,7 @@ export const ListingCardComponent = props => {
               longWordClass: css.longWord,
             })}
           </div>
+          <p>{currentListing.attributes.publicData.listingType}</p>
           {showAuthorInfo ? (
             <div className={css.authorInfo}>
               <FormattedMessage id="ListingCard.author" values={{ authorName }} />

@@ -1075,5 +1075,14 @@
   "UserDisplayName.deleted": "Deleted user",
   "UserNav.accountSettings": "Account settings",
   "UserNav.profileSettings": "Profile settings",
-  "UserNav.yourListings": "Your listings"
+  "UserNav.yourListings": "Your listings",
+  "FavoriteListingsPage.loadingFavoriteListings": "Loading listings…",
+  "FavoriteListingsPage.noResults": "You haven't listed any favorites.",
+  "FavoriteListingsPage.queryError": "Query failed. Please try again.",
+  "FavoriteListingsPage.title": "View your favorites",
+  "FavoriteListingsPage.youHaveListings": "You have {count} favorite {count, plural, one {listing} other {listings}}",
+  "OrderPanel.addFavoriteButton":"Add to favorites",
+  "OrderPanel.unfavoriteButton":"Unfavorite",
+  "TopbarDesktop.favoriteListingsLink": "Your Favorites",
+  "UserNav.favoriteListings": "Your Favorites"
 }

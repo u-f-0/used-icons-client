@@ -266,6 +266,10 @@
   text-align: center;
 }
 
+.favoriteButton {
+  margin: 12px 0 36px 0;
+}
+
 .receipt {
   flex-shrink: 0;
 }
