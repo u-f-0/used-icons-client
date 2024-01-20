@@ -44,6 +44,7 @@ import SearchResultsPanel from './SearchResultsPanel/SearchResultsPanel';
 import NoSearchResultsMaybe from './NoSearchResultsMaybe/NoSearchResultsMaybe';
 
 import css from './SearchPage.module.css';
+import { listingFields, listingTypes } from '../../config/configListing';
 
 const MODAL_BREAKPOINT = 768; // Search is in modal on mobile layout
 
@@ -213,7 +214,33 @@ export class SearchPageComponent extends Component {
       listingFieldsConfig,
       activeListingTypes
     );
+
     const availableFilters = [
+      ...[{
+        "key": "listingType",
+        "scope": "public",
+        "schemaType": "enum",
+        "enumOptions": [
+            {
+                "label": "Buy Products",
+                "option": "inquiry-products"
+            },
+            {
+                "label": "Sell Products",
+                "option": "sell-products"
+            },
+        ],
+        "filterConfig": {
+            "indexForSearch": true,
+            "label": "Listing Type",
+            "filterType": "SelectMultipleFilter",
+            "group": "primary"
+        },
+        "includeForListingTypes": [
+            "sell-products",
+            "inquiry-products"
+        ]
+    }],
       ...customPrimaryFilters,
       ...defaultFilters,
       ...customSecondaryFilters,
