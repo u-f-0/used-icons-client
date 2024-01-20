@@ -120,7 +120,7 @@ export const ListingCardComponent = props => {
           sizes={renderSizes}
         />
           <div className={css.listingTypeWrapper}>
-            {currentListing.attributes.publicData.listingType === "sell-products"
+            {publicData.listingType === "sell-products"
               ? <div className={css.listingType}>Selling</div>
               : <div className={css.listingType}>Aquiring</div>
             }
