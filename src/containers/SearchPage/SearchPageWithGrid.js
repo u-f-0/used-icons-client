@@ -222,11 +222,11 @@ export class SearchPageComponent extends Component {
         "schemaType": "enum",
         "enumOptions": [
             {
-                "label": "Buy Products",
+                "label": "Aquiring icons",
                 "option": "inquiry-products"
             },
             {
-                "label": "Sell Products",
+                "label": "Selling icons",
                 "option": "sell-products"
             },
         ],

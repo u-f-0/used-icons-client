@@ -119,6 +119,12 @@ export const ListingCardComponent = props => {
           variants={variants}
           sizes={renderSizes}
         />
+          <div className={css.listingTypeWrapper}>
+            {currentListing.attributes.publicData.listingType === "selling-products"
+              ? <div className={css.listingType}>Selling</div>
+              : <div className={css.listingType}>Aquiring</div>
+            }
+            </div>
       </AspectRatioWrapper>
       <div className={css.info}>
         <PriceMaybe price={price} publicData={publicData} config={config} intl={intl} />
@@ -129,7 +135,6 @@ export const ListingCardComponent = props => {
               longWordClass: css.longWord,
             })}
           </div>
-          <p>{currentListing.attributes.publicData.listingType}</p>
           {showAuthorInfo ? (
             <div className={css.authorInfo}>
               <FormattedMessage id="ListingCard.author" values={{ authorName }} />
