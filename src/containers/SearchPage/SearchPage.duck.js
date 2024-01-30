@@ -261,6 +261,7 @@ export const loadData = (params, search, config) => {
         'title',
         'geolocation',
         'price',
+        'publicData',
         'publicData.listingType',
         'publicData.transactionProcessAlias',
         'publicData.unitType',

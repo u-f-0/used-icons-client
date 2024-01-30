@@ -56,7 +56,7 @@ const PriceMaybe = props => {
   return (
     <div className={css.price}>
       <div className={css.priceValue} title={priceTitle}>
-        {formattedPrice}
+        {typeof(formattedPrice) === 'undefined' ? '-' : formattedPrice}
       </div>
       {isBookable ? (
         <div className={css.perUnit}>
@@ -104,6 +104,9 @@ export const ListingCardComponent = props => {
       }
     : null;
 
+    const brand = listing.attributes.publicData?.Brand
+    const designer = listing.attributes.publicData?.Designer
+
   return (
     <NamedLink className={classes} name="ListingPage" params={{ id, slug }}>
       <AspectRatioWrapper
@@ -126,8 +129,6 @@ export const ListingCardComponent = props => {
             }
             </div>
       </AspectRatioWrapper>
-      <div className={css.info}>
-        <PriceMaybe price={price} publicData={publicData} config={config} intl={intl} />
         <div className={css.mainInfo}>
           <div className={css.title}>
             {richText(title, {
@@ -135,13 +136,18 @@ export const ListingCardComponent = props => {
               longWordClass: css.longWord,
             })}
           </div>
+          <PriceMaybe price={price} publicData={publicData} config={config} intl={intl} />
+        </div>
+        <div className={css.info}>
+          <div className={css.metaInfo}>
+              {typeof(designer) === 'undefined' ? '-' : designer} / {typeof(brand) === 'undefined' ? '-' : brand}
+          </div>
           {showAuthorInfo ? (
             <div className={css.authorInfo}>
               <FormattedMessage id="ListingCard.author" values={{ authorName }} />
             </div>
           ) : null}
         </div>
-      </div>
     </NamedLink>
   );
 };

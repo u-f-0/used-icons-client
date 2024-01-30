@@ -44,7 +44,8 @@ import SearchResultsPanel from './SearchResultsPanel/SearchResultsPanel';
 import NoSearchResultsMaybe from './NoSearchResultsMaybe/NoSearchResultsMaybe';
 
 import css from './SearchPage.module.css';
-import { listingFields, listingTypes } from '../../config/configListing';
+import { listingFields } from '../../config/configListing';
+import { listingImage } from '../../config/configLayout';
 
 const MODAL_BREAKPOINT = 768; // Search is in modal on mobile layout
 
@@ -420,6 +421,7 @@ export class SearchPageComponent extends Component {
                 <SearchResultsPanel
                   className={css.searchListingsPanel}
                   listings={listings}
+                  metaData={listingFields}
                   pagination={listingsAreLoaded ? pagination : null}
                   search={parse(location.search)}
                   isMapVariant={false}

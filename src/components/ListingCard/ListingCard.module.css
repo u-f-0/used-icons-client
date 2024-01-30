@@ -34,17 +34,72 @@
 .info {
   /* Layout */
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mainInfo {
   padding: 14px 0 2px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  /* Font */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  composes: textSmall from global;
+  font-weight: var(--fontWeightBold);
+  color: var(--colorGrey700);
+  margin: 0;
 }
 
 .price {
   /* Layout */
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  flex-shrink: 0;
+  justify-content: flex-end;
   margin-bottom: 4px;
+}
+
+.authorInfo {
+  /* Font */
+  display: flex;
+  justify-content: flex-end;
+  composes: marketplaceTinyFontStyles from global;
+  font-weight: var(--fontWeightMedium);
+  color: var(--colorGrey700);
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  /* Remove default margins from font */
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @media (--viewportMedium) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.metaInfo {
+  /* Font */
+  display: flex;
+  justify-content: flex-end;
+  composes: marketplaceTinyFontStyles from global;
+  font-weight: var(--fontWeightMedium);
+  color: var(--colorGrey700);
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  /* Remove default margins from font */
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @media (--viewportMedium) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }
 
 .priceValue {
@@ -82,37 +137,9 @@
   }
 }
 
-.mainInfo {
-  display: flex;
-  flex-direction: column;
-}
 
-.title {
-  /* Font */
-  composes: textSmall from global;
-  font-weight: var(--fontWeightBold);
-  color: var(--colorGrey700);
-  margin: 0;
-}
 
-.authorInfo {
-  /* Font */
-  composes: marketplaceTinyFontStyles from global;
-  font-weight: var(--fontWeightMedium);
-  color: var(--colorGrey700);
 
-  padding-top: 4px;
-  padding-bottom: 4px;
-
-  /* Remove default margins from font */
-  margin-top: 0;
-  margin-bottom: 0;
-
-  @media (--viewportMedium) {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-}
 
 .longWord {
   /* fallback option */
