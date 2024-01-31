@@ -139,7 +139,7 @@ const TopbarDesktop = props => {
   );
 
   const loginLink = isAuthenticatedOrJustHydrated ? null : (
-    <NamedLink name="LoginPage" className="loginlink">
+    <NamedLink name="LoginPage" className={css.loginLink}>
       <span className={css.login}>
         <FormattedMessage id="TopbarDesktop.login" />
       </span>
@@ -161,7 +161,7 @@ const TopbarDesktop = props => {
         </span>
       </NamedLink>
       {profileMenu}
-      {signupLink}
+      {/* {signupLink} */}
       {loginLink}
     </nav>
   );

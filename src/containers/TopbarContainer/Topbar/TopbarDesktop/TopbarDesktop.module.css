@@ -98,7 +98,6 @@
 
 .inbox {
   composes: topbarDesktopLabel;
-  position: relative;
 }
 
 .notificationDot {
@@ -193,33 +192,9 @@
   }
 }
 
-.loginLink {
-  transition: var(--transitionStyleButton);
-  border: 1px solid black;
-  border-radius: 10%;
-
-  flex-shrink: 0;
-  height: 100%;
-  padding: 0 8px 0 8px;
-
-  color: var(--colorGrey700);
-
-  &:hover {
-    color: var(--colorBlack);
-    border-bottom: 4px solid var(--marketplaceColor);
-    border-radius: 0;
-    text-decoration: none;
-    background-color: black;
-  }
-}
-
 .signup,
 .login {
-  composes: textSmall from global;
-
-  display: inline-block;
-  margin: 28px 0;
-  text-decoration: inherit;
+  composes: topbarDesktopLabel;
 }
 
 /* left animated "border" like hover element */
