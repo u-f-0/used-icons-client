@@ -2,6 +2,7 @@
 
 .root {
   border-top: 1px solid var(--colorGrey100);
+  background-color: #0000ff;
 }
 
 .footer {
@@ -17,6 +18,16 @@
   list-style-type: none;
   padding-inline-start: 0px;
   margin-top: 1px;
+  color: white;
+}
+
+.footer a {
+  color: white;
+}
+
+.footer a:hover {
+  color: white;
+  font-weight: bold;
 }
 
 .linkList {
@@ -25,6 +36,7 @@
 }
 
 .content {
+  color: white;
   display: grid;
   justify-content: center;
   align-content: end;
@@ -87,7 +99,7 @@
   display: inline-block;
   font-size: 12px;
   line-height: 16px;
-  color: var(--colorGrey500);
+  color: var(--colorWhite);
   margin-top: 24px;
 }
 

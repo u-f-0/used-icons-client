@@ -65,7 +65,7 @@ const SectionFooter = props => {
       as="footer"
       id={sectionId}
       className={className || css.root}
-      rootClassName={rootClassName}
+      rootClassName="footer"
       appearance={appearance}
       options={fieldOptions}
     >
