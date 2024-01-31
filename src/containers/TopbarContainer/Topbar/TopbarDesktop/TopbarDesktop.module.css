@@ -73,73 +73,28 @@
   }
 }
 
-/* Create listing (CTA for providers) */
-.createListingLink {
-  border-bottom: 0px solid;
-  transition: var(--transitionStyleButton);
-
-  font-weight: var(--fontWeightMedium);
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 0;
-  color: var(--marketplaceColor);
-
-  flex-shrink: 0;
-  height: 100%;
-  padding: 0 12px 0 12px;
-  margin: 0;
-
-  &:hover {
-    color: var(--marketplaceColorDark);
-    border-bottom: 4px solid var(--marketplaceColor);
-    border-radius: 0;
-    text-decoration: none;
-  }
-
-  @media (--viewportMedium) {
-    line-height: 16px;
-    margin: 0;
-  }
-}
-
 .topbarDesktopLabel {
   composes: textSmall from global;
   display: inline-block;
-  margin: 28px 0;
-  text-decoration: inherit;
+  margin: 18px 10px;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 10px 20px 10px 20px;
+  width: 12em;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+
+ &:hover {
+    background-color: black;
+    color: white;
+  }
 }
 
 .createListing {
   composes: topbarDesktopLabel;
 }
 
-/* Inbox */
-.inboxLink {
-  border-bottom: 0px solid;
-  transition: var(--transitionStyleButton);
-
-  font-weight: var(--fontWeightMedium);
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 0;
-  color: var(--colorGrey700);
-
-  height: 100%;
-  padding: 0 12px 0 12px;
-  margin: 0;
-
-  &:hover {
-    color: var(--colorBlack);
-    border-bottom: 4px solid var(--marketplaceColor);
-    border-radius: 0;
-    text-decoration: none;
-  }
-
-  @media (--viewportMedium) {
-    line-height: 16px;
-    margin: 0;
-  }
-}
 
 .inbox {
   composes: topbarDesktopLabel;
@@ -239,12 +194,13 @@
 }
 
 .loginLink {
-  border-bottom: 0px solid;
   transition: var(--transitionStyleButton);
+  border: 1px solid black;
+  border-radius: 10%;
 
   flex-shrink: 0;
   height: 100%;
-  padding: 0 12px 0 12px;
+  padding: 0 8px 0 8px;
 
   color: var(--colorGrey700);
 
@@ -253,6 +209,7 @@
     border-bottom: 4px solid var(--marketplaceColor);
     border-radius: 0;
     text-decoration: none;
+    background-color: black;
   }
 }
 

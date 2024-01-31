@@ -139,7 +139,7 @@ const TopbarDesktop = props => {
   );
 
   const loginLink = isAuthenticatedOrJustHydrated ? null : (
-    <NamedLink name="LoginPage" className={css.loginLink}>
+    <NamedLink name="LoginPage" className="loginlink">
       <span className={css.login}>
         <FormattedMessage id="TopbarDesktop.login" />
       </span>
@@ -154,12 +154,12 @@ const TopbarDesktop = props => {
         alt={intl.formatMessage({ id: 'TopbarDesktop.logo' }, { marketplaceName })}
       />
       {search}
+      {inboxLink}
       <NamedLink className={css.createListingLink} name="NewListingPage">
         <span className={css.createListing}>
           <FormattedMessage id="TopbarDesktop.createListing" />
         </span>
       </NamedLink>
-      {inboxLink}
       {profileMenu}
       {signupLink}
       {loginLink}
