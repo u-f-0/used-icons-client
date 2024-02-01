@@ -16,6 +16,7 @@
 import 'core-js/features/map';
 import 'core-js/features/set';
 import 'raf/polyfill';
+import './index.css';
 
 // Dependency libs
 import React from 'react';

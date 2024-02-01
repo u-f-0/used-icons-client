@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Chaney Extended';
+    src: local('Chaney Extended'), url(./fonts/Chaney/chaney-extended-webfont.woff) format('woff');
+  }
+
+@font-face {
+    font-family: 'Chaney Regular';
+    src: local('Chaney Regular'), url(./fonts/Chaney/chaney-regular-webfont.woff) format('woff');
+  }
+
+  @font-face {
+    font-family: 'Chaney Ultra Extended';
+    src: local('Chaney Ultra Extended'), url(./fonts/Chaney/chaney-ultraextended-webfont.woff) format('woff');
+  }
+
+  @font-face {
+    font-family: 'Chaney Wide';
+    src: local('Chaney Wide'), url(./fonts/Chaney/chaney-wide-webfont.woff) format('woff');
+  }
+
+  @font-face {
+    font-family: 'DIN';
+    src: local('DIN'), url(./fonts/DIN/DINNextLTPro-Regular.otf) format('opentype');
+  }
