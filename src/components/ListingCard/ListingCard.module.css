@@ -150,19 +150,17 @@
 }
 
 .listingTypeWrapper {
-  background: black;
   position: absolute;
-  right: 0;
-  margin: 1rem;
-  border-radius: 1rem;
-  opacity: 0.7;
+  top: 1rem;
+  right: -1.8rem;
   z-index: 0;
 }
 
 .listingType {
-  color: white;
+  color: #0000ff;
   margin: 10px;
-  font-size: 1rem;
+  font-weight:bold;
+  font-size: 1.1rem;
   z-index: 1;
 }
 
