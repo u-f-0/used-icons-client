@@ -88,7 +88,7 @@ export const ListingCardComponent = props => {
   const firstImage =
     currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
   const secondImage =
-    currentListing.images && currentListing.images.length > 1 ? currentListing.images[1] : null;
+    currentListing.images && currentListing.images.length > 1 ? currentListing.images[1] : currentListing.images[0];
 
   const [isHovered, setIsHovered] = useState(false);
 
