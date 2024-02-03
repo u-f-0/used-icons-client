@@ -22,3 +22,7 @@
     font-family: 'DIN';
     src: local('DIN'), url(./fonts/DIN/DINNextLTPro-Regular.otf) format('opentype');
   }
+
+.footerWrapper {
+  background-color: #0000ff;
+}

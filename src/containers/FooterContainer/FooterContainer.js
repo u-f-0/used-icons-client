@@ -1,6 +1,7 @@
 import React from 'react';
 import { useConfiguration } from '../../context/configurationContext';
 import loadable from '@loadable/component';
+import {ReactComponent as Logo} from '../../assets/USEDICONS-LOGO.svg';
 
 const SectionBuilder = loadable(
   () => import(/* webpackChunkName: "SectionBuilder" */ '../PageBuilder/PageBuilder'),
@@ -26,7 +27,12 @@ const FooterComponent = () => {
     sectionType: 'footer',
   };
 
-  return <div className="footerWrapper"><SectionBuilder sections={[footerSection]} /></div>;
+  return ( 
+    <div className="footerWrapper">
+      <SectionBuilder sections={[footerSection]} />
+      <Logo color='white'/>
+    </div>
+  );
 };
 
 // NOTE: if you want to add dynamic data to FooterComponent,

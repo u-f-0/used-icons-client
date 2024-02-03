@@ -71,19 +71,13 @@ const SectionFooter = props => {
     >
       <div className={css.footer}>
         <div className={classNames(css.content, getContentCss(numberOfColumns))}>
-          <div>
-            <LinkedLogo
-              rootClassName={css.logoLink}
-              logoClassName={css.logoWrapper}
-              logoImageClassName={css.logoImage}
-            />
-          </div>
           <div className={css.sloganMobile}>
             <Field data={slogan} className={css.slogan} />
           </div>
           <div className={css.detailsInfo}>
             <div className={css.sloganDesktop}>
-              <Field data={slogan} className={css.slogan} />
+              {/* <Field data={slogan} className={css.slogan} /> */}
+              <span style={{fontSize:'2rem', lineHeight: '2rem'}}>Get exclusive offers, news and listings delivered to your mail. ___________________</span>
             </div>
             {showSocialMediaLinks ? (
               <div className={css.icons}>
