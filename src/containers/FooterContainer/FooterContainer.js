@@ -26,7 +26,7 @@ const FooterComponent = () => {
     sectionType: 'footer',
   };
 
-  return <div class="footerWrapper"><SectionBuilder sections={[footerSection]} /></div>;
+  return <div className="footerWrapper"><SectionBuilder sections={[footerSection]} /></div>;
 };
 
 // NOTE: if you want to add dynamic data to FooterComponent,
