@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { string, func, bool } from 'prop-types';
 import classNames from 'classnames';
 
@@ -87,7 +87,15 @@ export const ListingCardComponent = props => {
   const authorName = author.attributes.profile.displayName;
   const firstImage =
     currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
+  const secondImage =
+    currentListing.images && currentListing.images.length > 1 ? currentListing.images[1] : null;
 
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleHover = () => {
+    setIsHovered(!isHovered);
+  };
+  
   const {
     aspectWidth = 1,
     aspectHeight = 1,
@@ -111,6 +119,8 @@ export const ListingCardComponent = props => {
     <NamedLink className={classes} name="ListingPage" params={{ id, slug }}>
       <AspectRatioWrapper
         className={css.aspectRatioWrapper}
+        onMouseEnter={handleHover}
+        onMouseLeave={handleHover}
         width={aspectWidth}
         height={aspectHeight}
         {...setActivePropsMaybe}
@@ -118,10 +128,10 @@ export const ListingCardComponent = props => {
         <LazyImage
           rootClassName={css.rootForImage}
           alt={title}
-          image={firstImage}
+          image={isHovered ? secondImage : firstImage}
           variants={variants}
           sizes={renderSizes}
-        />
+         />
           <div className={css.listingTypeWrapper}>
             {publicData.listingType === "sell-products"
               ? <div className={css.listingType}>Selling</div>
