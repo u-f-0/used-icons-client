@@ -24,6 +24,7 @@ const TopbarDesktop = props => {
   const {
     className,
     appConfig,
+    pathName,
     currentUser,
     currentPage,
     rootClassName,
@@ -40,6 +41,8 @@ const TopbarDesktop = props => {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  console.log(pathName)
 
   const marketplaceName = appConfig.marketplaceName;
   const authenticatedOnClientSide = mounted && isAuthenticated;
@@ -146,13 +149,17 @@ const TopbarDesktop = props => {
     </NamedLink>
   );
 
+  const logo = (
+    <LinkedLogo
+      className={css.logoLink}
+      layout="desktop"
+      alt={intl.formatMessage({ id: 'TopbarDesktop.logo' }, { marketplaceName })}
+    />
+  )
+
   return (
     <nav className={classes}>
-      <LinkedLogo
-        className={css.logoLink}
-        layout="desktop"
-        alt={intl.formatMessage({ id: 'TopbarDesktop.logo' }, { marketplaceName })}
-      />
+      {(pathName !== "/") && ( logo ) }
       {search}
       {inboxLink}
       <NamedLink className={css.createListingLink} name="NewListingPage">

@@ -245,6 +245,7 @@ class TopbarComponent extends Component {
             currentPage={currentPage}
             initialSearchFormValues={initialSearchFormValues}
             intl={intl}
+            pathName={location.pathname}
             isAuthenticated={isAuthenticated}
             notificationCount={notificationCount}
             onLogout={this.handleLogout}

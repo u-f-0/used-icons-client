@@ -1,3 +1,5 @@
+@import './styles/customMediaQueries.css';
+
 @font-face {
     font-family: 'Chaney Extended';
     src: local('Chaney Extended'), url(./fonts/Chaney/chaney-extended-webfont.woff) format('woff');
@@ -25,4 +27,16 @@
 
 .footerWrapper {
   background-color: #0000ff;
+}
+
+.headerLogo {
+  @media (--viewportSmall) {
+    display: none;
+  }
+
+  @media (--viewportLarge) {
+    display: block;
+    padding: 1rem 0 1rem 0;
+  }
+
 }

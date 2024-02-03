@@ -17,7 +17,7 @@
   background-color: var(--colorWhite);
 
   /* shadows */
-  box-shadow: var(--boxShadowLight);
+  /* box-shadow: var(--boxShadowLight); */
 
   @media (--viewportLarge) {
     padding: 0 24px 0 0;
@@ -39,9 +39,9 @@
   flex-grow: 1;
   height: 100%;
   margin-right: 24px;
-  border-left-style: solid;
-  border-left-width: 1px;
-  border-left-color: var(--colorGrey100);
+  /* border-left-style: solid;
+  border-left-width: 1px; */
+  /* border-left-color: var(--colorGrey100); */
 
   @media (--viewportLarge) {
     padding-left: 0;

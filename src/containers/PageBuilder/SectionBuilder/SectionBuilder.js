@@ -1,6 +1,7 @@
 import React from 'react';
 import { arrayOf, bool, func, node, oneOf, shape, string } from 'prop-types';
 import classNames from 'classnames';
+import {ReactComponent as Logo} from '../../../assets/USEDICONS-LOGO.svg';
 
 // Section components
 import SectionArticle from './SectionArticle';
@@ -89,6 +90,23 @@ const SectionBuilder = props => {
           section?.appearance?.textColor === 'white';
         const classes = classNames({ [css.darkTheme]: isDarkTheme });
         const sectionId = getUniqueSectionId(section.sectionId, index);
+
+        if (sectionId === 'hero-image') {
+          return (
+            <div style={{backgroundColor: 'white'}}>
+              <Logo className="headerLogo" color='black'/>
+              <Section
+                key={`${sectionId}_i${index}`}
+                className={classes}
+                defaultClasses={DEFAULT_CLASSES}
+                isInsideContainer={isInsideContainer}
+                options={otherOption}
+                {...section}
+                sectionId={sectionId}
+              />
+            </div>
+          )
+        }
 
         if (Section) {
           return (
