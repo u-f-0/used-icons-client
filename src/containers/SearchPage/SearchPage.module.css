@@ -73,14 +73,14 @@
     justify-content: flex-start;
     border: none;
     box-shadow: none;
-    background-color: transparent;
+    background-color: white;
   }
 
   @media (min-width: 1440px) {
-    padding: 40px 0 0 calc((100vw - 1368px) / 2);
+    /* padding: 40px 0 0 calc((100vw - 1368px) / 2); */
   }
   @media (--viewportXLarge) {
-    padding: 40px 0 0 calc((100vw - 1800px) / 2);
+    /* padding: 40px 0 0 calc((100vw - 1800px) / 2); */
   }
 }
 
@@ -146,8 +146,8 @@
      */
     padding: 24px 24px 0 24px;
     background-color: var(--colorWhite);
-    border-left-width: 1px;
-    border-left-style: solid;
+    /* border-left-width: 1px; */
+    /* border-left-style: solid; */
     border-left-color: var(--colorGrey100);
   }
 
@@ -160,10 +160,10 @@
   }
 
   @media (min-width: 1440px) {
-    padding: 40px calc((100vw - 1368px) / 2) 0 59px;
+    /* padding: 40px calc((100vw - 1368px) / 2) 0 59px; */
   }
   @media (--viewportXLarge) {
-    padding: 40px calc((100vw - 1800px) / 2) 0 59px;
+    /* padding: 40px calc((100vw - 1800px) / 2) 0 59px; */
   }
 }
 
