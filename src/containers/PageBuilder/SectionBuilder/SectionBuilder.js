@@ -108,6 +108,22 @@ const SectionBuilder = props => {
           )
         }
 
+        if (sectionId === 'category-links') {
+          return (
+            <div style={{backgroundColor: 'white', padding: '1rem 2rem'}}>
+              <Section
+                key={`${sectionId}_i${index}`}
+                className={classes}
+                defaultClasses={DEFAULT_CLASSES}
+                isInsideContainer={isInsideContainer}
+                options={otherOption}
+                {...section}
+                sectionId={sectionId}
+              />
+            </div>
+          )
+        }
+
         if (Section) {
           return (
             <Section

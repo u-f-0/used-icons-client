@@ -40,10 +40,21 @@ const BlockBuilder = props => {
 
   return (
     <>
+      {sectionId === "category-links" &&
+        <h4 style={{color: 'black'}}>Popular Categories</h4>
+      }
       {blocks.map((block, index) => {
+        const blockLength = blocks.length
         const config = components[block.blockType];
         const Block = config?.component;
         const blockId = block.blockId || `${sectionId}-block-${index + 1}`;
+
+        if (sectionId === "category-links") {
+          return (
+            <a href={block.callToAction.href} style={{fontFamily: 'Chaney Regular', color: 'black', fontSize: '7rem', lineHeight: '7rem', textDecoration: 'none'}}>{block.title.content}{blockLength > index +1 && ', '}</a>
+          )
+
+        }
 
         if (Block) {
           return (

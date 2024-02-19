@@ -1,38 +1,25 @@
 import React from 'react';
-import { arrayOf, bool, func, node, number, object, shape, string } from 'prop-types';
+import { arrayOf, bool, func, node, object, shape, string } from 'prop-types';
 import classNames from 'classnames';
 
 import Field, { hasDataInFields } from '../../Field';
 import BlockBuilder from '../../BlockBuilder';
 
 import SectionContainer from '../SectionContainer';
-import css from './SectionColumns.module.css';
 
-// The number of columns (numColumns) affects styling and responsive images
-const COLUMN_CONFIG = [
-  { css: css.oneColumn, responsiveImageSizes: '(max-width: 767px) 100vw, 1200px' },
-  { css: css.twoColumns, responsiveImageSizes: '(max-width: 767px) 100vw, 600px' },
-  { css: css.threeColumns, responsiveImageSizes: '(max-width: 767px) 100vw, 400px' },
-  { css: css.fourColumns, responsiveImageSizes: '(max-width: 767px) 100vw, 265px' },
-];
-const getIndex = numColumns => numColumns - 1;
-const getColumnCSS = numColumns => {
-  const config = COLUMN_CONFIG[getIndex(numColumns)];
-  return config ? config.css : COLUMN_CONFIG[0].css;
-};
-const getResponsiveImageSizes = numColumns => {
-  const config = COLUMN_CONFIG[getIndex(numColumns)];
-  return config ? config.responsiveImageSizes : COLUMN_CONFIG[0].responsiveImageSizes;
-};
+import css from './SectionFeaturesLanding.module.css';
 
-// Section component that's able to show blocks in multiple different columns (defined by "numColumns" prop)
-const SectionColumns = props => {
+// Section component that shows features.
+// Block content are shown in a row-like way:
+// [image] text
+// text [image]
+// [image] text
+const SectionFeatures = props => {
   const {
     sectionId,
     className,
     rootClassName,
     defaultClasses,
-    numColumns,
     title,
     description,
     appearance,
@@ -61,38 +48,26 @@ const SectionColumns = props => {
       {hasHeaderFields ? (
         <header className={defaultClasses.sectionDetails}>
           <Field data={title} className={defaultClasses.title} options={fieldOptions} />
-          <Field data={description} className={defaultClasses.description} options={fieldOptions} />
+          <Field data={description} className={css.text} options={fieldOptions} />
           <Field data={callToAction} className={defaultClasses.ctaButton} options={fieldOptions} />
         </header>
       ) : null}
-      {sectionId === 'category-links' ? (
-        <div>
+      {hasBlocks ? (
+        <div
+          className={classNames(defaultClasses.blockContainer, css.featuresMain, {
+            [css.noSidePaddings]: isInsideContainer,
+          })}
+        >
           <BlockBuilder
+            rootClassName={css.block}
             ctaButtonClass={defaultClasses.ctaButton}
             blocks={blocks}
             sectionId={sectionId}
-            responsiveImageSizes={getResponsiveImageSizes(numColumns)}
+            responsiveImageSizes="(max-width: 767px) 100vw, 568px"
             options={options}
           />
         </div>
-      ) : 
-      <>
-        {hasBlocks ? (
-          <div
-            className={classNames(defaultClasses.blockContainer, getColumnCSS(numColumns), {
-              [css.noSidePaddings]: isInsideContainer,
-            })}
-          >
-            <BlockBuilder
-              ctaButtonClass={defaultClasses.ctaButton}
-              blocks={blocks}
-              sectionId={sectionId}
-              responsiveImageSizes={getResponsiveImageSizes(numColumns)}
-              options={options}
-            />
-          </div>
-        ) : null} 
-        </>}
+      ) : null}
     </SectionContainer>
   );
 };
@@ -101,12 +76,11 @@ const propTypeOption = shape({
   fieldComponents: shape({ component: node, pickValidProps: func }),
 });
 
-SectionColumns.defaultProps = {
+SectionFeatures.defaultProps = {
   className: null,
   rootClassName: null,
   defaultClasses: null,
   textClassName: null,
-  numColumns: 1,
   title: null,
   description: null,
   appearance: null,
@@ -116,7 +90,7 @@ SectionColumns.defaultProps = {
   options: null,
 };
 
-SectionColumns.propTypes = {
+SectionFeatures.propTypes = {
   sectionId: string.isRequired,
   className: string,
   rootClassName: string,
@@ -126,7 +100,6 @@ SectionColumns.propTypes = {
     description: string,
     ctaButton: string,
   }),
-  numColumns: number,
   title: object,
   description: object,
   appearance: object,
@@ -136,4 +109,4 @@ SectionColumns.propTypes = {
   options: propTypeOption,
 };
 
-export default SectionColumns;
+export default SectionFeatures;

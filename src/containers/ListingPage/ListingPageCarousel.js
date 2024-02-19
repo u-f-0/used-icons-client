@@ -564,7 +564,6 @@ const mapDispatchToProps = dispatch => ({
   onFetchTimeSlots: (listingId, start, end, timeZone) =>
     dispatch(fetchTimeSlots(listingId, start, end, timeZone)),
   onUpdateFavorites: (payload) => dispatch(updateProfile(payload)),
-
 });
 
 // Note: it is important that the withRouter HOC is **outside** the

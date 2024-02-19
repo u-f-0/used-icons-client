@@ -16,9 +16,9 @@
   padding: 32px 0;
   position: relative;
 
-  @media (--viewportMedium) {
+  /* @media (--viewportMedium) {
     padding: 64px 0;
-  }
+  } */
 }
 
 .backgroundImageWrapper {
