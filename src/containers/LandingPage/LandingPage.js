@@ -48,12 +48,12 @@ const SectionUser = props => {
   // The number of columns (numColumns) affects styling and responsive images
   const COLUMN_CONFIG = [
     { css: cssCarousel.oneColumn, responsiveImageSizes: '(max-width: 767px) 100vw, 1200px' },
-    { css: cssCarousel.twoColumns, responsiveImageSizes: '(max-width: 767px) 100vw, 600px' },
+    { css: cssCarousel.twoColumns, responsiveImageSizes: '(max-width: 767px) 100vw, 580px' },
     { css: cssCarousel.threeColumns, responsiveImageSizes: '(max-width: 767px) 100vw, 400px' },
     { css: cssCarousel.fourColumns, responsiveImageSizes: '(max-width: 767px) 100vw, 290px' },
   ];
 
-  const numColumns = 3
+  const numColumns = 2
   const getIndex = numColumns => numColumns - 1;
   const getColumnCSS = numColumns => {
     const config = COLUMN_CONFIG[getIndex(numColumns)];
