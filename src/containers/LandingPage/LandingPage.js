@@ -33,7 +33,7 @@ import {
 } from '../../components';
 
 const SectionUser = props => {
-  const { sectionId, displayName, listingData } = props;
+  const { sectionId, listingData } = props;
   const panelWidth = 62.5;
   // Render hints for responsive image
   const renderSizes = [
@@ -53,7 +53,7 @@ const SectionUser = props => {
     { css: cssCarousel.fourColumns, responsiveImageSizes: '(max-width: 767px) 100vw, 290px' },
   ];
 
-  const numColumns = 2
+  const numColumns = 3
   const getIndex = numColumns => numColumns - 1;
   const getColumnCSS = numColumns => {
     const config = COLUMN_CONFIG[getIndex(numColumns)];
