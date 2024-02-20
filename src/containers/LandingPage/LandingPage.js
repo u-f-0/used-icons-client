@@ -120,7 +120,7 @@ const SectionUser = props => {
       {/* {queryInProgress ? loadingResults : null}
         {queryFavoritesError ? queryError : null} */}
       <div className={cssCarousel.carouselContainer} id={sliderContainerId}>
-        <div
+        {/* <div
           className={classNames(cssCarousel.carouselArrows, {
             [css.notEnoughBlocks]: numberOfBlocks <= numColumns,
           })}
@@ -139,7 +139,7 @@ const SectionUser = props => {
           >
             ›
           </button>
-        </div>
+        </div> */}
         <div className={getColumnCSS(numColumns)} id={sliderId}>
           {listingData.map(l => (
             <div className={cssCarousel.block}>
