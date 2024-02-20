@@ -64,6 +64,26 @@
   }
 }
 
+.textLink {
+  font-weight: var(--fontWeightBold);
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: black;
+  padding: 25px 0px 25px 25px;
+
+  display: inline-block;
+  text-decoration: inherit;
+
+  @media (--viewportMedium) {
+    font-weight: var(--fontWeightMedium);
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .topbarSearchWithLeftPadding {
   padding-left: 24px;
   height: var(--topbarHeightDesktop);
@@ -85,7 +105,7 @@
   text-align: center;
   text-decoration: none;
 
- &:hover {
+  &:hover {
     background-color: black;
     color: white;
   }
@@ -94,7 +114,6 @@
 .createListing {
   composes: topbarDesktopLabel;
 }
-
 
 .inbox {
   composes: topbarDesktopLabel;

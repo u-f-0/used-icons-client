@@ -5,6 +5,10 @@
 }
 
 .desktopInputRoot {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: var(--topbarHeightDesktop);
 }
 
@@ -77,14 +81,17 @@
 
 .desktopInput {
   composes: p from global;
+  position: relative;
   flex-grow: 1;
+  background: rgb(232, 232, 232);
+  border-radius: 25px;
   /* Font */
-  height: var(--topbarHeightDesktop);
+  height: 50%;
+  top: 25%;
+  margin-left: 20px;
   line-height: unset;
   border: none;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 10px;
+  padding-left: 20px;
 
   /* Search text gets ellipsis if it's too wide */
   text-overflow: ellipsis;
@@ -95,7 +102,7 @@
 
   &:hover,
   &:focus {
-    border-bottom-color: var(--marketplaceColor);
+    background: rgb(232, 232, 232);
     outline: none;
     border: 0;
     box-shadow: none;

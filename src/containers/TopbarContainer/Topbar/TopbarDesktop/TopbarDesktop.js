@@ -42,8 +42,6 @@ const TopbarDesktop = props => {
     setMounted(true);
   }, []);
 
-  console.log(pathName)
-
   const marketplaceName = appConfig.marketplaceName;
   const authenticatedOnClientSide = mounted && isAuthenticated;
   const isAuthenticatedOrJustHydrated = isAuthenticated || !mounted;
@@ -155,15 +153,23 @@ const TopbarDesktop = props => {
       layout="desktop"
       alt={intl.formatMessage({ id: 'TopbarDesktop.logo' }, { marketplaceName })}
     />
-  )
+  );
 
   return (
     <nav className={classes}>
-      {(pathName !== "/") && ( logo ) }
+      {pathName === '/' && (
+        <NamedLink className={css.textLink} name="SearchPage">
+          Browse All Listings
+        </NamedLink>
+      )}
+      {pathName !== '/' && logo}
       {search}
       {inboxLink}
       <NamedLink className={css.createListingLink} name="NewListingPage">
-        <span className={css.createListing}>
+        <span
+          style={{ backgroundColor: '#39ab4aff', border: 'none', color: 'white' }}
+          className={css.createListing}
+        >
           <FormattedMessage id="TopbarDesktop.createListing" />
         </span>
       </NamedLink>
