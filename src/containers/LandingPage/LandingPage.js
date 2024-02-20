@@ -28,7 +28,7 @@ const PageBuilder = loadable(() =>
 
 import { H3, PaginationLinks, ListingCard } from '../../components';
 
-const SectionUser = props => {
+const SectionListingCarousel = props => {
   const { sectionId, listingData } = props;
   const panelWidth = 62.5;
   // Render hints for responsive image
@@ -66,20 +66,14 @@ const SectionUser = props => {
 
   useEffect(() => {
     const setCarouselWidth = () => {
-      if (hasBlocks) {
-        const element = document.querySelector('div');
-        const elementStyle = window.getComputedStyle(element);
-        const horizontalBorder =
-          parseFloat(elementStyle.borderLeftWidth) + parseFloat(elementStyle.borderRightWidth);
-        const scrollbarWidth = element.offsetWidth - element.clientWidth - horizontalBorder + 'px';
-        const windowWidth = window.innerWidth;
-        const elem = window.document.getElementById(sliderContainerId);
-        const elementWidth =
-          elem.clientWidth >= windowWidth - scrollbarWidth ? windowWidth : elem.clientWidth;
-        const carouselWidth = elementWidth - scrollbarWidth;
+      const windowWidth = window.innerWidth;
+      const elem = window.document.getElementById(sliderContainerId);
+      const scrollbarWidth = window.innerWidth - document.body.clientWidth;
+      const elementWidth =
+        elem.clientWidth >= windowWidth - scrollbarWidth ? windowWidth : elem.clientWidth;
+      const carouselWidth = elementWidth - scrollbarWidth - 18;
 
-        elem.style.setProperty('--carouselWidth', `${carouselWidth}px`);
-      }
+      elem.style.setProperty('--carouselWidth', `${carouselWidth}px`);
     };
     setCarouselWidth();
 
@@ -120,29 +114,9 @@ const SectionUser = props => {
       {/* {queryInProgress ? loadingResults : null}
         {queryFavoritesError ? queryError : null} */}
       <div className={cssCarousel.carouselContainer} id={sliderContainerId}>
-        {/* <div
-          className={classNames(cssCarousel.carouselArrows, {
-            [css.notEnoughBlocks]: numberOfBlocks <= numColumns,
-          })}
-        >
-          <button
-            className={cssCarousel.carouselArrowPrev}
-            onClick={onSlideLeft}
-            onKeyDown={onKeyDown}
-          >
-            ‹
-          </button>
-          <button
-            className={cssCarousel.carouselArrowNext}
-            onClick={onSlideRight}
-            onKeyDown={onKeyDown}
-          >
-            ›
-          </button>
-        </div> */}
         <div className={getColumnCSS(numColumns)} id={sliderId}>
           {listingData.map(l => (
-            <div className={cssCarousel.block}>
+            <div key={l.id.uuid} className={cssCarousel.block}>
               <ListingCard
                 className={cssCarousel.listingCard}
                 key={l.id.uuid}
@@ -158,32 +132,18 @@ const SectionUser = props => {
 };
 
 export const LandingPageComponent = props => {
-  const {
-    pageAssetsData,
-    inProgress,
-    error,
-    isAuthenticated,
-    currentUser,
-    listings,
-    pagination,
-    queryInProgress,
-    queryFavoritesError,
-    queryParams,
-    scrollingDisabled,
-    intl,
-  } = props;
+  const { pageAssetsData, inProgress, error, listings } = props;
 
   const pageData = pageAssetsData?.[camelize(ASSET_NAME)]?.data;
 
-  const sectionUserName = {
-    sectionId: 'authenticated-user',
-    sectionType: 'customUser',
-    displayName: currentUser?.attributes?.profile?.displayName,
+  const sectionListingCarousel = {
+    sectionId: 'listingCarousel1',
+    sectionType: 'listingCarousel',
     listingData: listings,
   };
 
   const customSections = pageData
-    ? [pageData.sections[0], pageData.sections[1], sectionUserName, pageData.sections[2]]
+    ? [pageData.sections[0], pageData.sections[1], sectionListingCarousel, pageData.sections[2]]
     : pageData?.sections;
 
   const sectionOverrides = {};
@@ -196,7 +156,7 @@ export const LandingPageComponent = props => {
         }}
         options={{
           sectionComponents: {
-            customUser: { component: SectionUser },
+            listingCarousel: { component: SectionListingCarousel },
             features: { component: SectionFeaturesLanding },
           },
         }}

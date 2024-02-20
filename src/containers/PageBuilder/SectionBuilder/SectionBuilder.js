@@ -1,7 +1,7 @@
 import React from 'react';
 import { arrayOf, bool, func, node, oneOf, shape, string } from 'prop-types';
 import classNames from 'classnames';
-import {ReactComponent as Logo} from '../../../assets/USEDICONS-LOGO.svg';
+import { ReactComponent as Logo } from '../../../assets/USEDICONS-LOGO.svg';
 
 // Section components
 import SectionArticle from './SectionArticle';
@@ -93,8 +93,8 @@ const SectionBuilder = props => {
 
         if (sectionId === 'hero-image') {
           return (
-            <div style={{backgroundColor: 'white'}}>
-              <Logo className="headerLogo" color='black'/>
+            <div style={{ backgroundColor: 'white' }}>
+              <Logo style={{ padding: '4rem' }} className="headerLogo" color="black" />
               <Section
                 key={`${sectionId}_i${index}`}
                 className={classes}
@@ -105,12 +105,12 @@ const SectionBuilder = props => {
                 sectionId={sectionId}
               />
             </div>
-          )
+          );
         }
 
         if (sectionId === 'category-links') {
           return (
-            <div style={{backgroundColor: 'white', padding: '1rem 2rem'}}>
+            <div style={{ backgroundColor: 'white', padding: '1rem 2rem' }}>
               <Section
                 key={`${sectionId}_i${index}`}
                 className={classes}
@@ -121,7 +121,7 @@ const SectionBuilder = props => {
                 sectionId={sectionId}
               />
             </div>
-          )
+          );
         }
 
         if (Section) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useConfiguration } from '../../context/configurationContext';
 import loadable from '@loadable/component';
-import {ReactComponent as Logo} from '../../assets/USEDICONS-LOGO.svg';
+import { ReactComponent as Logo } from '../../assets/USEDICONS-LOGO.svg';
 
 const SectionBuilder = loadable(
   () => import(/* webpackChunkName: "SectionBuilder" */ '../PageBuilder/PageBuilder'),
@@ -27,10 +27,10 @@ const FooterComponent = () => {
     sectionType: 'footer',
   };
 
-  return ( 
+  return (
     <div className="footerWrapper">
       <SectionBuilder sections={[footerSection]} />
-      <Logo color='white'/>
+      <Logo style={{ padding: '4rem' }} color="white" />
     </div>
   );
 };
