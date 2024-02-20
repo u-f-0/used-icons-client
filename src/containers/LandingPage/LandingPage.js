@@ -49,7 +49,7 @@ const SectionUser = props => {
     { css: cssCarousel.fourColumns, responsiveImageSizes: '(max-width: 767px) 100vw, 290px' },
   ];
 
-  const numColumns = 2;
+  const numColumns = 3;
   const getIndex = numColumns => numColumns - 1;
   const getColumnCSS = numColumns => {
     const config = COLUMN_CONFIG[getIndex(numColumns)];
@@ -67,9 +67,13 @@ const SectionUser = props => {
   useEffect(() => {
     const setCarouselWidth = () => {
       if (hasBlocks) {
+        const element = document.querySelector('div');
+        const elementStyle = window.getComputedStyle(element);
+        const horizontalBorder =
+          parseFloat(elementStyle.borderLeftWidth) + parseFloat(elementStyle.borderRightWidth);
+        const scrollbarWidth = element.offsetWidth - element.clientWidth - horizontalBorder + 'px';
         const windowWidth = window.innerWidth;
         const elem = window.document.getElementById(sliderContainerId);
-        const scrollbarWidth = window.innerWidth - document.body.clientWidth;
         const elementWidth =
           elem.clientWidth >= windowWidth - scrollbarWidth ? windowWidth : elem.clientWidth;
         const carouselWidth = elementWidth - scrollbarWidth;
