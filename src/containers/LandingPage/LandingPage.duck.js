@@ -6,8 +6,6 @@ import { addMarketplaceEntities } from '../../ducks/marketplaceData.duck';
 
 export const ASSET_NAME = 'landing-page';
 
-
-
 const RESULT_PAGE_SIZE = 42;
 
 // ================ Action types ================ //
@@ -52,7 +50,7 @@ const favoriteListingsPageReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         queryInProgress: false,
-        queryFavoritesError: payload
+        queryFavoritesError: payload,
       };
 
     default:

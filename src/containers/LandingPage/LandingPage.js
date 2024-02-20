@@ -26,11 +26,7 @@ const PageBuilder = loadable(() =>
   import(/* webpackChunkName: "PageBuilder" */ '../PageBuilder/PageBuilder')
 );
 
-import {
-  H3,
-  PaginationLinks,
-  ListingCard,
-} from '../../components';
+import { H3, PaginationLinks, ListingCard } from '../../components';
 
 const SectionUser = props => {
   const { sectionId, listingData } = props;
@@ -44,7 +40,7 @@ const SectionUser = props => {
 
   const KEY_CODE_ARROW_LEFT = 37;
   const KEY_CODE_ARROW_RIGHT = 39;
-  
+
   // The number of columns (numColumns) affects styling and responsive images
   const COLUMN_CONFIG = [
     { css: cssCarousel.oneColumn, responsiveImageSizes: '(max-width: 767px) 100vw, 1100px' },
@@ -53,7 +49,7 @@ const SectionUser = props => {
     { css: cssCarousel.fourColumns, responsiveImageSizes: '(max-width: 767px) 100vw, 290px' },
   ];
 
-  const numColumns = 2
+  const numColumns = 2;
   const getIndex = numColumns => numColumns - 1;
   const getColumnCSS = numColumns => {
     const config = COLUMN_CONFIG[getIndex(numColumns)];
@@ -117,57 +113,63 @@ const SectionUser = props => {
 
   return (
     <SectionContainer id={sectionId}>
-        {/* {queryInProgress ? loadingResults : null}
+      {/* {queryInProgress ? loadingResults : null}
         {queryFavoritesError ? queryError : null} */}
-        <div className={cssCarousel.carouselContainer} id={sliderContainerId}>
-          <div
-            className={classNames(cssCarousel.carouselArrows, {
-              [css.notEnoughBlocks]: numberOfBlocks <= numColumns,
-            })}
+      <div className={cssCarousel.carouselContainer} id={sliderContainerId}>
+        <div
+          className={classNames(cssCarousel.carouselArrows, {
+            [css.notEnoughBlocks]: numberOfBlocks <= numColumns,
+          })}
+        >
+          <button
+            className={cssCarousel.carouselArrowPrev}
+            onClick={onSlideLeft}
+            onKeyDown={onKeyDown}
           >
-            <button className={cssCarousel.carouselArrowPrev} onClick={onSlideLeft} onKeyDown={onKeyDown}>
-              ‹
-            </button>
-            <button className={cssCarousel.carouselArrowNext} onClick={onSlideRight} onKeyDown={onKeyDown}>
-              ›
-            </button>
-          </div>
-          <div className={getColumnCSS(numColumns)} id={sliderId}>
-              {listingData.map(l => (
-                <div className={cssCarousel.block}>
-                <ListingCard
-                  className={cssCarousel.listingCard}
-                  key={l.id.uuid}
-                  listing={l}
-                  renderSizes={renderSizes}
-                />
-                </div>
-              ))}
-          </div>
+            ‹
+          </button>
+          <button
+            className={cssCarousel.carouselArrowNext}
+            onClick={onSlideRight}
+            onKeyDown={onKeyDown}
+          >
+            ›
+          </button>
         </div>
+        <div className={getColumnCSS(numColumns)} id={sliderId}>
+          {listingData.map(l => (
+            <div className={cssCarousel.block}>
+              <ListingCard
+                className={cssCarousel.listingCard}
+                key={l.id.uuid}
+                listing={l}
+                renderSizes={renderSizes}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </SectionContainer>
   );
 };
 
-
-
 export const LandingPageComponent = props => {
-  const { 
-    pageAssetsData, 
-    inProgress, 
-    error, 
-    isAuthenticated, 
-    currentUser, 
-    listings, 
-    pagination, 
+  const {
+    pageAssetsData,
+    inProgress,
+    error,
+    isAuthenticated,
+    currentUser,
+    listings,
+    pagination,
     queryInProgress,
-    queryFavoritesError, 
-    queryParams, 
-    scrollingDisabled, 
-    intl
+    queryFavoritesError,
+    queryParams,
+    scrollingDisabled,
+    intl,
   } = props;
 
- const pageData = pageAssetsData?.[camelize(ASSET_NAME)]?.data;
+  const pageData = pageAssetsData?.[camelize(ASSET_NAME)]?.data;
 
   const sectionUserName = {
     sectionId: 'authenticated-user',
@@ -175,30 +177,29 @@ export const LandingPageComponent = props => {
     displayName: currentUser?.attributes?.profile?.displayName,
     listingData: listings,
   };
-  
-  const customSections = 
-    pageData ? [pageData.sections[0], pageData.sections[1], sectionUserName, pageData.sections[2]] : pageData?.sections
-    
-  const sectionOverrides = {
-  
-  };
+
+  const customSections = pageData
+    ? [pageData.sections[0], pageData.sections[1], sectionUserName, pageData.sections[2]]
+    : pageData?.sections;
+
+  const sectionOverrides = {};
 
   return (
     <>
-   <PageBuilder
-     pageAssetsData={{
-        sections: customSections,
-      }}
-      options={{
-        sectionComponents: {
-          customUser: { component: SectionUser,  },
-          features: { component: SectionFeaturesLanding },
-        },
-      }}
-      inProgress={inProgress}
-      error={error}
-      fallbackPage={<FallbackPage error={error} />}
-    />
+      <PageBuilder
+        pageAssetsData={{
+          sections: customSections,
+        }}
+        options={{
+          sectionComponents: {
+            customUser: { component: SectionUser },
+            features: { component: SectionFeaturesLanding },
+          },
+        }}
+        inProgress={inProgress}
+        error={error}
+        fallbackPage={<FallbackPage error={error} />}
+      />
     </>
   );
 };
@@ -212,12 +213,9 @@ LandingPageComponent.propTypes = {
   queryInProgress: bool.isRequired,
   queryFavoritesError: propTypes.error,
   queryParams: object,
-
-
 };
 
 const mapStateToProps = state => {
-
   const { pageAssetsData, inProgress, error } = state.hostedAssets || {};
   const { isAuthenticated } = state.auth;
   const { currentUser } = state.user;
@@ -232,11 +230,11 @@ const mapStateToProps = state => {
 
   const listings = getListingsById(state, currentPageResultIds);
 
-  return { 
-    pageAssetsData, 
-    inProgress, 
-    error, 
-    isAuthenticated, 
+  return {
+    pageAssetsData,
+    inProgress,
+    error,
+    isAuthenticated,
     currentUser,
     currentPageResultIds,
     listings,
@@ -254,9 +252,10 @@ const mapStateToProps = state => {
 // lifecycle hook.
 //
 // See: https://github.com/ReactTraining/react-router/issues/4671
-const LandingPage = compose(connect(
-  mapStateToProps,
-  injectIntl
+const LandingPage = compose(
+  connect(
+    mapStateToProps,
+    injectIntl
   )
 )(LandingPageComponent);
 
