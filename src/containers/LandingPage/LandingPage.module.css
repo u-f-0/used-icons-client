@@ -54,17 +54,31 @@
 .categoryLinks {
   display: inline-flex;
   font-family: 'Chaney Regular';
-  font-size: 7rem;
-  line-height: 7rem;
   text-decoration: none;
+
+  @media (--viewportMedium) {
+    font-size: 3rem;
+    line-height: 1rem;
+  }
+
+  @media (--viewportLarge) {
+    font-size: 7rem;
+    line-height: 7rem;
+  }
 }
 
 .categoryMeta {
   padding: 0px 30px 0px 10px;
   display: inline-flex;
-  font-size: 2rem;
   margin-top: auto;
-  margin-bottom: 1rem;
+
+  @media (--viewportMedium) {
+    font-size: 1rem;
+  }
+
+  @media (--viewportLarge) {
+    font-size: 2rem;
+  }
 }
 
 .listingCards {
