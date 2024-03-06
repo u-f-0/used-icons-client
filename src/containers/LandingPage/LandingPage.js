@@ -157,7 +157,9 @@ export const LandingPageComponent = props => {
   const categories = listings?.map(listing => listing.attributes.publicData.category);
   const categoryCountsMap = {};
   for (const num of categories) {
-    categoryCountsMap[num] = categoryCountsMap[num] ? categoryCountsMap[num] + 1 : 1;
+    if (num !== undefined) {
+      categoryCountsMap[num] = categoryCountsMap[num] ? categoryCountsMap[num] + 1 : 1;
+    }
   }
 
   const sectionListingCarousel = {
