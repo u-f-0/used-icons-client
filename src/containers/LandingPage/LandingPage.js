@@ -131,10 +131,34 @@ const SectionListingCarousel = props => {
   );
 };
 
+const PopularCategories = props => {
+  const { sectionId, categories } = props;
+
+  return (
+    <div id={sectionId} className={css.categoriesWrapper}>
+      <h4>Popular Categories:</h4>
+      <div className={css.categoriesContainer}>
+        {Object.entries(categories).map(([key, value]) => (
+          <div className={css.category}>
+            <a href={'/s?pub_category=' + key}>
+              <div className={css.categoryLinks}>{key}</div>
+              <div className={css.categoryMeta}>({value}) listings</div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export const LandingPageComponent = props => {
   const { pageAssetsData, inProgress, error, listings } = props;
-
   const pageData = pageAssetsData?.[camelize(ASSET_NAME)]?.data;
+  const categories = listings?.map(listing => listing.attributes.publicData.category);
+  const categoryCountsMap = {};
+  for (const num of categories) {
+    categoryCountsMap[num] = categoryCountsMap[num] ? categoryCountsMap[num] + 1 : 1;
+  }
 
   const sectionListingCarousel = {
     sectionId: 'listingCarousel1',
@@ -142,11 +166,15 @@ export const LandingPageComponent = props => {
     listingData: listings,
   };
 
-  const customSections = pageData
-    ? [pageData.sections[0], pageData.sections[1], sectionListingCarousel, pageData.sections[2]]
-    : pageData?.sections;
+  const popularCategories = {
+    sectionId: 'category-links',
+    sectionType: 'popularCategories',
+    categories: categoryCountsMap,
+  };
 
-  const sectionOverrides = {};
+  const customSections = pageData
+    ? [pageData.sections[0], popularCategories, sectionListingCarousel, pageData.sections[1]]
+    : pageData?.sections;
 
   return (
     <>
@@ -156,6 +184,7 @@ export const LandingPageComponent = props => {
         }}
         options={{
           sectionComponents: {
+            popularCategories: { component: PopularCategories },
             listingCarousel: { component: SectionListingCarousel },
             features: { component: SectionFeaturesLanding },
           },

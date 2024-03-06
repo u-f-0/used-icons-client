@@ -65,8 +65,12 @@ const SectionColumns = props => {
           <Field data={callToAction} className={defaultClasses.ctaButton} options={fieldOptions} />
         </header>
       ) : null}
-      {sectionId === 'category-links' ? (
-        <div>
+      {hasBlocks ? (
+        <div
+          className={classNames(defaultClasses.blockContainer, getColumnCSS(numColumns), {
+            [css.noSidePaddings]: isInsideContainer,
+          })}
+        >
           <BlockBuilder
             ctaButtonClass={defaultClasses.ctaButton}
             blocks={blocks}
@@ -75,24 +79,7 @@ const SectionColumns = props => {
             options={options}
           />
         </div>
-      ) : 
-      <>
-        {hasBlocks ? (
-          <div
-            className={classNames(defaultClasses.blockContainer, getColumnCSS(numColumns), {
-              [css.noSidePaddings]: isInsideContainer,
-            })}
-          >
-            <BlockBuilder
-              ctaButtonClass={defaultClasses.ctaButton}
-              blocks={blocks}
-              sectionId={sectionId}
-              responsiveImageSizes={getResponsiveImageSizes(numColumns)}
-              options={options}
-            />
-          </div>
-        ) : null} 
-        </>}
+      ) : null}
     </SectionContainer>
   );
 };

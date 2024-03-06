@@ -38,7 +38,7 @@ const getQueryParamName = queryParamNames => {
   return Array.isArray(queryParamNames) ? queryParamNames[0] : queryParamNames;
 };
 
-// Format URI component's query param: { pub_key: 'has_all:a,b,c' }
+// Format URI component's query param: { pub_skey: 'has_all:a,b,c' }
 const format = (selectedOptions, queryParamName, schemaType, searchMode) => {
   const hasOptionsSelected = selectedOptions && selectedOptions.length > 0;
   const mode = schemaType === SCHEMA_TYPE_MULTI_ENUM && searchMode ? `${searchMode}:` : '';

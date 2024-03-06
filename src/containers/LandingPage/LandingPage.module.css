@@ -31,6 +31,42 @@
   }
 }
 
+.categoriesWrapper {
+  background: white;
+  padding: 2rem 2rem 0px 2rem;
+  color: black;
+}
+
+.categoriesContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category {
+  display: flex;
+  padding: 10px 0px;
+
+  a:hover {
+    color: blue;
+  }
+}
+
+.categoryLinks {
+  display: inline-flex;
+  font-family: 'Chaney Regular';
+  font-size: 7rem;
+  line-height: 7rem;
+  text-decoration: none;
+}
+
+.categoryMeta {
+  padding: 0px 30px 0px 10px;
+  display: inline-flex;
+  font-size: 2rem;
+  margin-top: auto;
+  margin-bottom: 1rem;
+}
+
 .listingCards {
   padding: 0 24px;
 

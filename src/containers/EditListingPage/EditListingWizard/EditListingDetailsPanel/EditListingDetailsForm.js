@@ -127,7 +127,12 @@ const AddListingFields = props => {
       includeForListingTypes == null || includeForListingTypes.includes(listingType);
     const isProviderScope = ['public', 'private'].includes(scope);
 
-    return isKnownSchemaType && isTargetListingType && isProviderScope
+    console.log(fieldConfig.key);
+
+    return isKnownSchemaType &&
+      isTargetListingType &&
+      isProviderScope &&
+      fieldConfig.key === 'Condition'
       ? [
           ...pickedFields,
           <CustomExtendedDataField

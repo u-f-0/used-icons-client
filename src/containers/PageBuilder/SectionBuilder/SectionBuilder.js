@@ -94,23 +94,7 @@ const SectionBuilder = props => {
         if (sectionId === 'hero-image') {
           return (
             <div style={{ backgroundColor: 'white' }}>
-              <Logo style={{ padding: '4rem' }} className="headerLogo" color="black" />
-              <Section
-                key={`${sectionId}_i${index}`}
-                className={classes}
-                defaultClasses={DEFAULT_CLASSES}
-                isInsideContainer={isInsideContainer}
-                options={otherOption}
-                {...section}
-                sectionId={sectionId}
-              />
-            </div>
-          );
-        }
-
-        if (sectionId === 'category-links') {
-          return (
-            <div style={{ backgroundColor: 'white', padding: '1rem 2rem' }}>
+              <Logo style={{ padding: '3rem' }} className="headerLogo" color="black" />
               <Section
                 key={`${sectionId}_i${index}`}
                 className={classes}
