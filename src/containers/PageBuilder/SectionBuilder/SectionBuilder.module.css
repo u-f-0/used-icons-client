@@ -140,14 +140,12 @@
   background-color: #39ab4a;
   color: white;
   text-decoration: none;
-  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%);
   font-weight: 500;
   margin-top: 24px;
   border-radius: 25px;
 
   &:hover {
     text-decoration: none;
-    background-color: var(--marketplaceColorDark);
   }
 }
 
