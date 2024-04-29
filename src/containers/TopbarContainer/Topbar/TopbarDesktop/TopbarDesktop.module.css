@@ -166,12 +166,6 @@
   margin: 0;
   padding: 0 12px 0 12px;
 
-  &:hover {
-    border-bottom: 4px solid var(--marketplaceColor);
-    border-radius: 0;
-    text-decoration: none;
-  }
-
   &:active {
     border-bottom: 0;
   }

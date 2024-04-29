@@ -142,8 +142,8 @@ const PopularCategories = props => {
           <div className={css.category}>
             <a href={'/s?pub_category=' + key}>
               <div className={css.categoryLinks}>{key}</div>
-              <div className={css.categoryMeta}>({value}) listings</div>
             </a>
+            <div className={css.categoryMeta}>({value}) listings</div>
           </div>
         ))}
       </div>
