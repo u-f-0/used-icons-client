@@ -113,6 +113,14 @@
 
 .createListing {
   composes: topbarDesktopLabel;
+  background: #39ab4aff;
+  color: white;
+  border: none;
+
+  &:hover {
+    background: #61bc6e;
+    transition-duration: 0.3s;
+  }
 }
 
 .inbox {

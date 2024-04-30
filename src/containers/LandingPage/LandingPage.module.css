@@ -62,8 +62,8 @@
   }
 
   @media (--viewportLarge) {
-    font-size: 7rem;
-    line-height: 7rem;
+    font-size: 6rem;
+    line-height: 6rem;
   }
 }
 

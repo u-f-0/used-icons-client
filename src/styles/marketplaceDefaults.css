@@ -28,6 +28,8 @@
 
   /* Colors used for different functions (like error texts) */
 
+  --colorUIGreen: #00bfa5;
+  --colorUIGreenHover: #61bc6e;
   --colorSuccess: #2ecc71;
   --colorSuccessDark: #239954;
   --colorSuccessLight: #f0fff6;

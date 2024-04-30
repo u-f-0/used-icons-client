@@ -34,7 +34,7 @@
 
   width: 48px;
   height: 48px;
-  padding: 0px 0 4px 0;
+  padding: 2px 0 0px 0;
   margin-top: -64px;
   border-radius: 100%;
   border: none;
@@ -138,11 +138,11 @@
 .threeColumns .block {
   @media (--viewportMedium) {
     /* 64px (horizontal layout paddings) - 32px (two gutters á 32px) / 3 (number of columns) */
-    width: calc((min(var(--contentMaxWidthPages), var(--carouselWidth)) - 64px - 64px) / 3);
+    width: calc((min(var(--contentMaxWidthPages), var(--carouselWidth)) - 64px - 64px) / 3.25);
 
     &:last-of-type {
       /* 32px (padding-right above) / 3 (number of columns) */
-      width: calc((min(var(--contentMaxWidthPages), var(--carouselWidth)) - 32px) / 3);
+      width: calc((min(var(--contentMaxWidthPages), var(--carouselWidth)) - 32px) / 3.25);
     }
   }
 }

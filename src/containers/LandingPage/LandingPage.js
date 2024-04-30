@@ -114,6 +114,26 @@ const SectionListingCarousel = props => {
       {/* {queryInProgress ? loadingResults : null}
         {queryFavoritesError ? queryError : null} */}
       <div className={cssCarousel.carouselContainer} id={sliderContainerId}>
+        <div
+          className={classNames(cssCarousel.carouselArrows, {
+            [css.notEnoughBlocks]: numberOfBlocks <= numColumns,
+          })}
+        >
+          <button
+            className={cssCarousel.carouselArrowPrev}
+            onClick={onSlideLeft}
+            onKeyDown={onKeyDown}
+          >
+            ‹
+          </button>
+          <button
+            className={cssCarousel.carouselArrowNext}
+            onClick={onSlideRight}
+            onKeyDown={onKeyDown}
+          >
+            ›
+          </button>
+        </div>
         <div className={getColumnCSS(numColumns)} id={sliderId}>
           {listingData.map(l => (
             <div key={l.id.uuid} className={cssCarousel.block}>
