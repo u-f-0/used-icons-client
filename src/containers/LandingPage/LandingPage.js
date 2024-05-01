@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 const { arrayOf, bool, object } = PropTypes;
 import classNames from 'classnames';
 
 import loadable from '@loadable/component';
 import { ASSET_NAME } from './LandingPage.duck';
+import { ReactComponent as Logo } from '../../assets/USEDICONS-LOGO.svg';
 
 import SectionContainer from '../PageBuilder/SectionBuilder/SectionContainer';
 import SectionFeaturesLanding from '../../containers/PageBuilder/SectionBuilder/SectionFeaturesLanding';
@@ -28,7 +29,7 @@ const PageBuilder = loadable(() =>
 
 import { H3, PaginationLinks, ListingCard } from '../../components';
 
-const SectionListingCarousel = props => {
+const ListingCarouselSection = props => {
   const { sectionId, listingData } = props;
   const panelWidth = 62.5;
   // Render hints for responsive image
@@ -151,7 +152,7 @@ const SectionListingCarousel = props => {
   );
 };
 
-const PopularCategories = props => {
+const PopularCategoriesSection = props => {
   const { sectionId, categories } = props;
 
   return (
@@ -171,6 +172,37 @@ const PopularCategories = props => {
   );
 };
 
+const LogoSection = props => {
+  const { sectionId } = props;
+  // const [isVisible, setIsVisible] = useState(true);
+
+  // useEffect(() => {
+  //   window.addEventListener('scroll', listenToScroll);
+  //   return () => window.removeEventListener('scroll', listenToScroll);
+  // }, []);
+
+  // const listenToScroll = () => {
+  //   let heightToHideFrom = 50;
+  //   const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+
+  //   if (winScroll > heightToHideFrom) {
+  //     isVisible && setIsVisible(false);
+  //   } else {
+  //     setIsVisible(true);
+  //   }
+  // };
+
+  return (
+    // <>
+    //   {isVisible && (
+    <div id={sectionId}>
+      <Logo style={{ padding: '3rem' }} className="headerLogo" color="black" />
+    </div>
+    //   )}
+    // </>
+  );
+};
+
 export const LandingPageComponent = props => {
   const { pageAssetsData, inProgress, error, listings } = props;
   const pageData = pageAssetsData?.[camelize(ASSET_NAME)]?.data;
@@ -182,20 +214,40 @@ export const LandingPageComponent = props => {
     }
   }
 
-  const sectionListingCarousel = {
+  // useEffect(() => {
+  //   if ((window.onscroll = () => window.scrollY === 0)) {
+  //     console.log('At top');
+  //   } else {
+  //     console.log('Not at top');
+  //   }
+
+  //   return   });
+
+  const logoSection = {
+    sectionId: 'mag-logo',
+    sectionType: 'logo',
+  };
+
+  const listingCarouselSection = {
     sectionId: 'listingCarousel1',
     sectionType: 'listingCarousel',
     listingData: listings,
   };
 
-  const popularCategories = {
+  const popularCategoriesSection = {
     sectionId: 'category-links',
     sectionType: 'popularCategories',
     categories: categoryCountsMap,
   };
 
   const customSections = pageData
-    ? [pageData.sections[0], popularCategories, sectionListingCarousel, pageData.sections[1]]
+    ? [
+        logoSection,
+        pageData.sections[0],
+        popularCategoriesSection,
+        listingCarouselSection,
+        pageData.sections[1],
+      ]
     : pageData?.sections;
 
   return (
@@ -206,8 +258,9 @@ export const LandingPageComponent = props => {
         }}
         options={{
           sectionComponents: {
-            popularCategories: { component: PopularCategories },
-            listingCarousel: { component: SectionListingCarousel },
+            logo: { component: LogoSection },
+            popularCategories: { component: PopularCategoriesSection },
+            listingCarousel: { component: ListingCarouselSection },
             features: { component: SectionFeaturesLanding },
           },
         }}

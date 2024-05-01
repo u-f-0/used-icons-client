@@ -91,23 +91,6 @@ const SectionBuilder = props => {
         const classes = classNames({ [css.darkTheme]: isDarkTheme });
         const sectionId = getUniqueSectionId(section.sectionId, index);
 
-        if (sectionId === 'hero-image') {
-          return (
-            <div style={{ backgroundColor: 'white' }}>
-              <Logo style={{ padding: '3rem' }} className="headerLogo" color="black" />
-              <Section
-                key={`${sectionId}_i${index}`}
-                className={classes}
-                defaultClasses={DEFAULT_CLASSES}
-                isInsideContainer={isInsideContainer}
-                options={otherOption}
-                {...section}
-                sectionId={sectionId}
-              />
-            </div>
-          );
-        }
-
         if (Section) {
           return (
             <Section

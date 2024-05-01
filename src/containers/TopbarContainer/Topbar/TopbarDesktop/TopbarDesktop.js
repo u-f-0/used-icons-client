@@ -166,7 +166,10 @@ const TopbarDesktop = props => {
       {search}
       {inboxLink}
       <NamedLink className={css.createListingLink} name="NewListingPage">
-        <span className={css.createListing}>
+        <span
+          style={{ backgroundColor: '#39ab4aff', border: 'none', color: 'white' }}
+          className={css.createListing}
+        >
           <FormattedMessage id="TopbarDesktop.createListing" />
         </span>
       </NamedLink>

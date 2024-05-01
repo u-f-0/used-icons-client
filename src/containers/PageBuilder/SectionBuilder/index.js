@@ -11,6 +11,13 @@ import SectionHero from './SectionHero';
 // Main component: SectionBuilder
 import SectionBuilder from './SectionBuilder';
 
-export { SectionContainer, SectionColumns, SectionArticle, SectionFeatures, SectionCarousel };
+export {
+  SectionHero,
+  SectionContainer,
+  SectionColumns,
+  SectionArticle,
+  SectionFeatures,
+  SectionCarousel,
+};
 
 export default SectionBuilder;
