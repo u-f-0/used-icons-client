@@ -153,7 +153,7 @@ const EnhancedCheckoutPage = props => {
     />
   ) : (
     <Page title={title} scrollingDisabled={scrollingDisabled}>
-      <CustomTopbar intl={intl} />
+      <CustomTopbar intl={intl} linkToExternalSite={config?.topbar?.logoLink} />
     </Page>
   );
 };
@@ -166,6 +166,7 @@ const mapStateToProps = state => {
     speculateTransactionInProgress,
     speculateTransactionError,
     speculatedTransaction,
+    isClockInSync,
     transaction,
     initiateInquiryError,
     initiateOrderError,
@@ -181,6 +182,7 @@ const mapStateToProps = state => {
     speculateTransactionInProgress,
     speculateTransactionError,
     speculatedTransaction,
+    isClockInSync,
     transaction,
     listing,
     initiateInquiryError,
