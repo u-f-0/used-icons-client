@@ -323,10 +323,10 @@ const EditListingDetailsFormComponent = props => (
       );
       const maxLength60Message = maxLength(maxLengthMessage, TITLE_MAX_LENGTH);
 
-      // const hasCategories = selectableCategories && selectableCategories.length > 0;
-      const hasCategories = false;
-      // const showCategories = listingType && hasCategories;
-      const showCategories = false;
+      const hasCategories = selectableCategories && selectableCategories.length > 0;
+      // const hasCategories = false;
+      const showCategories = listingType && hasCategories;
+      // const showCategories = false;
 
       const showTitle = hasCategories ? allCategoriesChosen : listingType;
       const showDescription = hasCategories ? allCategoriesChosen : listingType;
