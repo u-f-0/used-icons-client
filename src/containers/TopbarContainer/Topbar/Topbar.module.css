@@ -10,32 +10,102 @@
 
 .container {
   /* Size */
+  padding: 0 2rem;
+  box-sizing: border-box;
   width: 100%;
   height: var(--topbarHeight);
 
   /* Layout for child components */
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
   /* fill */
   background-color: var(--colorWhite);
 
   /* shadows */
-  box-shadow: var(--boxShadow);
+  /* box-shadow: var(--boxShadow); */
+  background: --colorGrey100;
 
-  @media (--viewportMedium) {
+  @media (--viewportSmall) {
     height: var(--topbarHeightDesktop);
   }
 
-  @media (--viewportLarge) {
+  /* @media (--viewportLarge) {
+    display: none;
+  } */
+}
+
+.searchBar {
+  flex-grow: 1;
+
+  @media (--viewportSmall) {
+    display: none;
+  }
+}
+
+.topbarDesktopLabel {
+  composes: textSmall from global;
+  border: 1px solid black;
+  margin: 10px;
+  border-radius: 25px;
+  padding: 10px 10px 10px 10px;
+  width: 12em;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    background-color: black;
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.createListing {
+  composes: topbarDesktopLabel;
+  background: #39ab4aff;
+  border: 1px solid #39ab4aff;
+  color: white;
+
+  &:hover {
+    background: #61bc6e;
+    text-decoration: none;
+    transition-duration: 0.3s;
+  }
+
+  @media (--viewportSmall) {
+    display: none;
+  }
+}
+
+.browseListing {
+  composes: topbarDesktopLabel;
+  color: black;
+
+  @media (--viewportMedium) {
+    font-weight: var(--fontWeightMedium);
+  }
+
+  &:hover {
+    text-decoration: none;
+    transition-duration: 0.3s;
+  }
+  @media (--viewportSmall) {
     display: none;
   }
 }
 
 .logoutButton {
-  margin: 0;
+  margin-top: 1rem;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--colorGrey300);
+}
+
+.greeting {
+  margin-bottom: 1rem;
 }
 
 /* Child component's size (and positioning) should be given here */
@@ -47,7 +117,7 @@
 
   /* Layout */
   display: flex;
-  width: 66px;
+  box-sizing: border-box;
   margin: 0;
   border-width: 0px;
   background-color: transparent;
@@ -68,12 +138,7 @@
 }
 
 .menu {
-  padding: 15px 24px;
   position: relative;
-
-  @media (--viewportMedium) {
-    padding: 21px 24px;
-  }
 }
 .searchMenu {
   padding: 12px 24px;
@@ -85,23 +150,24 @@
 
 .menuIcon,
 .searchMenuIcon {
-  margin: 9px 0;
+  margin-right: 10px;
+  color: black;
+  vertical-align: center;
 }
 
 .notificationDot {
   /* Dimensions */
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
 
   /* Position */
   position: absolute;
-  top: 17px;
-  right: 17px;
+  top: 15px;
+  right: 5px;
 
   /* Style: red dot with white border */
   background-color: var(--colorFail);
-  border: 2px solid var(--colorWhite);
 
   animation-name: notificationPop;
   animation-duration: 0.1s;
@@ -111,10 +177,6 @@
   animation-timing-function: ease-in;
   opacity: 0;
   transform: scale(0);
-
-  @media (--viewportMedium) {
-    top: 23px;
-  }
 }
 
 @keyframes notificationPop {
@@ -128,26 +190,60 @@
   }
 }
 
+.profileMenuContent {
+  position: fixed;
+  top: 0;
+  right: -300px; /* Initially hidden off-screen */
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  overflow: auto;
+  transition: right 0.3s ease;
+  z-index: 999;
+  padding: 20px;
+}
+
+.slide-menu.open {
+  right: 0; /* Slide in when open */
+}
+
+@media (--viewportSmall) {
+  .profileMenuContent {
+    width: 100%; /* Full width on mobile devices */
+    right: -100%; /* Initially hidden off-screen */
+  }
+
+  .slide-menu.open {
+    right: 0; /* Slide in when open */
+  }
+}
+
+.loginIcon {
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
 .desktop {
   display: none;
 
-  @media (--viewportLarge) {
+  /* @media (--viewportLarge) {
     display: block;
-  }
+  } */
 }
 
 /* Icon component styles */
 .rootMenuIcon {
-  fill: var(--colorGrey700);
+  fill: black;
 }
 .rootSearchIcon {
-  stroke: var(--colorGrey700);
+  stroke: black;
 }
 
 .searchContainer {
   position: relative;
   height: 100%;
-  margin-top: 94px;
 }
 
 .mobileHelp {
@@ -165,14 +261,11 @@
 .modalContainer {
   composes: marketplaceModalInMobileBaseStyles from global;
   padding: 0;
-  padding: var(--modalPadding);
 
   @media (--viewportMedium) {
-    flex-basis: 576px;
     flex-grow: 1;
-    min-height: max(100%, 100vh);
+    min-height: max(100%, 100svh);
     height: auto;
-    padding: 24px;
     background-color: var(--colorWhite);
     border-bottom: none;
   }

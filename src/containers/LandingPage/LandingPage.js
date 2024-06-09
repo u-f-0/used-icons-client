@@ -160,7 +160,7 @@ const PopularCategoriesSection = props => {
       <h4>Popular Categories:</h4>
       <div className={css.categoriesContainer}>
         {Object.entries(categories).map(([key, value]) => (
-          <div className={css.category}>
+          <div key={key} className={css.category}>
             <a href={'/s?pub_category=' + key}>
               <div className={css.categoryLinks}>{key}</div>
             </a>
@@ -173,55 +173,25 @@ const PopularCategoriesSection = props => {
 };
 
 const LogoSection = props => {
-  const { sectionId } = props;
-  // const [isVisible, setIsVisible] = useState(true);
-
-  // useEffect(() => {
-  //   window.addEventListener('scroll', listenToScroll);
-  //   return () => window.removeEventListener('scroll', listenToScroll);
-  // }, []);
-
-  // const listenToScroll = () => {
-  //   let heightToHideFrom = 50;
-  //   const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-
-  //   if (winScroll > heightToHideFrom) {
-  //     isVisible && setIsVisible(false);
-  //   } else {
-  //     setIsVisible(true);
-  //   }
-  // };
+  const { sectionId, pageAssetsData } = props;
 
   return (
-    // <>
-    //   {isVisible && (
-    <div id={sectionId}>
-      <Logo style={{ padding: '3rem' }} className="headerLogo" color="black" />
+    <div id={sectionId} className={css.headerLogoContainer}>
+      <Logo className={css.headerLogo} color="black" />
     </div>
-    //   )}
-    // </>
   );
 };
 
 export const LandingPageComponent = props => {
   const { pageAssetsData, inProgress, error, listings } = props;
   const pageData = pageAssetsData?.[camelize(ASSET_NAME)]?.data;
-  const categories = listings?.map(listing => listing.attributes.publicData.category);
+  const categories = listings?.map(listing => listing.attributes.publicData.categoryLevel1);
   const categoryCountsMap = {};
   for (const num of categories) {
     if (num !== undefined) {
       categoryCountsMap[num] = categoryCountsMap[num] ? categoryCountsMap[num] + 1 : 1;
     }
   }
-
-  // useEffect(() => {
-  //   if ((window.onscroll = () => window.scrollY === 0)) {
-  //     console.log('At top');
-  //   } else {
-  //     console.log('Not at top');
-  //   }
-
-  //   return   });
 
   const logoSection = {
     sectionId: 'mag-logo',

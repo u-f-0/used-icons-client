@@ -31,7 +31,7 @@ const FooterComponent = () => {
   return (
     <div className="footerWrapper">
       <SectionBuilder sections={[footerSection]} />
-      <Logo style={{ padding: '3rem' }} color="white" />
+      {/* <Logo style={{ padding: '3rem', color: 'white' }} /> */}
     </div>
   );
 };

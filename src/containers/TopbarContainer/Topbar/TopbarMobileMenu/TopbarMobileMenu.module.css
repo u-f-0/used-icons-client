@@ -12,8 +12,17 @@
   flex-grow: 1;
   flex-shrink: 0;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: top;
+  justify-content: center;
+  min-height: 100svh;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
+  padding: 15rem 6rem 6rem 6rem;
+
+  @media (--viewportSmall) {
+    display: block;
+  }
 }
 
 .accountLinksWrapper,
@@ -21,6 +30,18 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
+}
+
+.categoryLinksWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+
+  @media (--viewportSmall) {
+    padding-top: 2rem;
+  }
 }
 .accountLinksWrapper {
   margin-bottom: 36px;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import { array, arrayOf, bool, func, number, object, shape, string } from 'prop-types';
 import pickBy from 'lodash/pickBy';
 import classNames from 'classnames';
@@ -6,16 +6,26 @@ import classNames from 'classnames';
 import appSettings from '../../../config/settings';
 import { useConfiguration } from '../../../context/configurationContext';
 import { useRouteConfiguration } from '../../../context/routeConfigurationContext';
-
+import { ACCOUNT_SETTINGS_PAGES } from '../../../routing/routeConfiguration';
 import { FormattedMessage, intlShape, useIntl } from '../../../util/reactIntl';
 import { isMainSearchTypeKeywords, isOriginInUse } from '../../../util/search';
 import { parse, stringify } from '../../../util/urlHelpers';
+import loginIcon from '../../../assets/login.svg'; // Adjust the path to your SVG icon
 import { createResourceLocatorString, matchPathname, pathByRouteName } from '../../../util/routes';
 import { propTypes } from '../../../util/types';
 import {
   Button,
   LimitedAccessBanner,
   LinkedLogo,
+  NamedLink,
+  Menu,
+  MenuLabel,
+  MenuContent,
+  MenuItem,
+  ProfileMenu,
+  InlineTextButton,
+  NotificationBadge,
+  Avatar,
   Modal,
   ModalMissingInformation,
 } from '../../../components';
@@ -27,8 +37,7 @@ import TopbarMobileMenu from './TopbarMobileMenu/TopbarMobileMenu';
 import TopbarDesktop from './TopbarDesktop/TopbarDesktop';
 
 import css from './Topbar.module.css';
-
-const MAX_MOBILE_SCREEN_WIDTH = 1024;
+import cssDesktop from './TopbarDesktop/TopbarDesktop.module.css';
 
 const redirectToURLWithModalState = (props, modalStateParam) => {
   const { history, location } = props;
@@ -93,6 +102,8 @@ const isCMSPage = found =>
   found.route?.name === 'CMSPage' ? `CMSPage:${found.params?.pageId}` : null;
 const isInboxPage = found =>
   found.route?.name === 'InboxPage' ? `InboxPage:${found.params?.tab}` : null;
+const isLandingPage = found => (found.route?.name === 'LandingPage' ? 'LandingPage' : null);
+
 // Find the name of the current route/pathname.
 // It's used as handle for currentPage check.
 const getResolvedCurrentPage = (location, routeConfiguration) => {
@@ -101,7 +112,14 @@ const getResolvedCurrentPage = (location, routeConfiguration) => {
     const found = matchedRoutes[0];
     const cmsPageName = isCMSPage(found);
     const inboxPageName = isInboxPage(found);
-    return cmsPageName ? cmsPageName : inboxPageName ? inboxPageName : `${found.route?.name}`;
+    const landingPageName = isLandingPage(found);
+    return cmsPageName
+      ? cmsPageName
+      : inboxPageName
+      ? inboxPageName
+      : landingPageName
+      ? landingPageName
+      : `${found.route?.name}`;
   }
 };
 
@@ -230,16 +248,12 @@ class TopbarComponent extends Component {
     // Custom links are sorted so that group="primary" are always at the beginning of the list.
     const sortedCustomLinks = sortCustomLinks(config.topbar?.customLinks);
     const customLinks = getResolvedCustomLinks(sortedCustomLinks, routeConfiguration);
+    const categories = config.categoryConfiguration?.categories;
     const resolvedCurrentPage = currentPage || getResolvedCurrentPage(location, routeConfiguration);
-
     const notificationDot = notificationCount > 0 ? <div className={css.notificationDot} /> : null;
 
-    const hasMatchMedia = typeof window !== 'undefined' && window?.matchMedia;
-    const isMobileLayout = hasMatchMedia
-      ? window.matchMedia(`(max-width: ${MAX_MOBILE_SCREEN_WIDTH}px)`)?.matches
-      : true;
-    const isMobileMenuOpen = isMobileLayout && mobilemenu === 'open';
-    const isMobileSearchOpen = isMobileLayout && mobilesearch === 'open';
+    const isMobileMenuOpen = mobilemenu === 'open';
+    const isMobileSearchOpen = mobilesearch === 'open';
 
     const mobileMenu = (
       <TopbarMobileMenu
@@ -250,6 +264,7 @@ class TopbarComponent extends Component {
         notificationCount={notificationCount}
         currentPage={resolvedCurrentPage}
         customLinks={customLinks}
+        categories={categories}
       />
     );
 
@@ -271,8 +286,130 @@ class TopbarComponent extends Component {
           : null,
       };
     };
-    const initialSearchFormValues = topbarSearcInitialValues();
 
+    const LoginLink = () => {
+      return (
+        <NamedLink name="LoginPage" className={cssDesktop.topbarLink}>
+          <img src={loginIcon} alt="Login" className={css.loginIcon} />
+        </NamedLink>
+      );
+    };
+
+    const ProfileMenu = ({ currentPage, currentUser, onLogout }) => {
+      const currentPageClass = page => {
+        const isAccountSettingsPage =
+          page === 'AccountSettingsPage' && ACCOUNT_SETTINGS_PAGES.includes(currentPage);
+        return currentPage === page || isAccountSettingsPage ? cssDesktop.currentPage : null;
+      };
+
+      const notificationDot =
+        notificationCount > 0 ? <div className={css.notificationDot} /> : null;
+
+      const notificationCountBadge =
+        notificationCount > 0 ? (
+          <NotificationBadge className={css.notificationBadge} count={notificationCount} />
+        ) : null;
+
+      const inboxTab = currentUserHasListings ? 'sales' : 'orders';
+
+      const displayName =
+        currentUser?.attributes?.profile.firstName +
+        ' ' +
+        currentUser?.attributes?.profile.lastName;
+
+      return (
+        <Menu>
+          <MenuLabel
+            className={cssDesktop.profileMenuLabel}
+            isOpenClassName={cssDesktop.profileMenuIsOpen}
+          >
+            {notificationDot}
+            <Avatar className={cssDesktop.avatar} user={currentUser} disableProfileLink />
+          </MenuLabel>
+          <MenuContent className={css.profileMenuContent}>
+            <MenuItem key="Greeting" className={css.greeting}>
+              <FormattedMessage id="TopbarMobileMenu.greeting" values={{ displayName }} />
+            </MenuItem>
+            <MenuItem key="Inbox">
+              <NamedLink
+                className={classNames(cssDesktop.inbox, currentPageClass(`InboxPage:${inboxTab}`))}
+                name="InboxPage"
+                params={{ tab: inboxTab }}
+              >
+                <FormattedMessage id="TopbarMobileMenu.inboxLink" />
+                {notificationCountBadge}
+              </NamedLink>
+            </MenuItem>
+            <MenuItem key="ManageListingsPage">
+              <NamedLink
+                className={classNames(cssDesktop.menuLink, currentPageClass('ManageListingsPage'))}
+                name="ManageListingsPage"
+              >
+                <FormattedMessage id="TopbarDesktop.yourListingsLink" />
+              </NamedLink>
+            </MenuItem>
+            <MenuItem key="FavoriteListingsPage">
+              <NamedLink
+                className={classNames(
+                  cssDesktop.yourListingsLink,
+                  currentPageClass('FavoriteListingsPage')
+                )}
+                name="FavoriteListingsPage"
+              >
+                <FormattedMessage id="TopbarDesktop.favoriteListingsLink" />
+              </NamedLink>
+            </MenuItem>
+            <MenuItem key="ProfileSettingsPage">
+              <NamedLink
+                className={classNames(cssDesktop.menuLink, currentPageClass('ProfileSettingsPage'))}
+                name="ProfileSettingsPage"
+              >
+                <FormattedMessage id="TopbarDesktop.profileSettingsLink" />
+              </NamedLink>
+            </MenuItem>
+            <MenuItem key="AccountSettingsPage">
+              <NamedLink
+                className={classNames(cssDesktop.menuLink, currentPageClass('AccountSettingsPage'))}
+                name="AccountSettingsPage"
+              >
+                <FormattedMessage id="TopbarDesktop.accountSettingsLink" />
+              </NamedLink>
+            </MenuItem>
+            <MenuItem key="logout">
+              <InlineTextButton rootClassName={css.logoutButton} onClick={this.handleLogout}>
+                <FormattedMessage id="TopbarDesktop.logout" />
+              </InlineTextButton>
+            </MenuItem>
+          </MenuContent>
+        </Menu>
+      );
+    };
+
+    const TopbarRightNav = props => {
+      const { currentUser, currentPage, isAuthenticated, onLogout } = props;
+      const [mounted, setMounted] = useState(false);
+
+      useEffect(() => {
+        setMounted(true);
+      }, []);
+
+      const authenticatedOnClientSide = mounted && isAuthenticated;
+      const isAuthenticatedOrJustHydrated = isAuthenticated || !mounted;
+
+      const profileMenuMaybe = authenticatedOnClientSide ? (
+        <ProfileMenu currentPage={currentPage} currentUser={currentUser} onLogout={onLogout} />
+      ) : null;
+
+      const loginLinkMaybe = isAuthenticatedOrJustHydrated ? null : <LoginLink />;
+
+      return (
+        <>
+          {profileMenuMaybe}
+          {loginLinkMaybe}
+        </>
+      );
+    };
+    const initialSearchFormValues = topbarSearcInitialValues();
     const classes = classNames(rootClassName || css.root, className);
 
     return (
@@ -285,27 +422,43 @@ class TopbarComponent extends Component {
           onLogout={this.handleLogout}
           currentPage={resolvedCurrentPage}
         />
-        <div className={classNames(mobileRootClassName || css.container, mobileClassName)}>
+        <div className={css.container}>
           <Button
             rootClassName={css.menu}
             onClick={this.handleMobileMenuOpen}
             title={intl.formatMessage({ id: 'Topbar.menuIcon' })}
           >
             <MenuIcon className={css.menuIcon} />
-            {notificationDot}
           </Button>
-          <LinkedLogo
-            layout={'mobile'}
-            alt={intl.formatMessage({ id: 'Topbar.logoIcon' })}
-            linkToExternalSite={config?.topbar?.logoLink}
+          {resolvedCurrentPage !== 'LandingPage' && (
+            <LinkedLogo
+              layout={'mobile'}
+              alt={intl.formatMessage({ id: 'Topbar.logoIcon' })}
+              linkToExternalSite={config?.topbar?.logoLink}
+            />
+          )}
+          <TopbarSearchForm
+            className={css.searchBar}
+            desktopInputRoot={css.topbarSearchWithLeftPadding}
+            onSubmit={this.handleSubmit}
+            initialValues={initialSearchFormValues}
+            appConfig={config}
           />
-          <Button
+          <NamedLink className={css.browseListing} name="SearchPage">
+            Browse All Listings
+          </NamedLink>
+          <NamedLink className={css.createListing} name="NewListingPage">
+            <FormattedMessage id="TopbarDesktop.createListing" />
+          </NamedLink>
+          {/* Mobile search button */}
+          {/* <Button
             rootClassName={css.searchMenu}
             onClick={this.handleMobileSearchOpen}
             title={intl.formatMessage({ id: 'Topbar.searchIcon' })}
           >
             <SearchIcon className={css.searchMenuIcon} />
-          </Button>
+          </Button> */}
+          {<TopbarRightNav {...this.props} />}
         </div>
         <div className={css.desktop}>
           <TopbarDesktop

@@ -31,7 +31,6 @@ import {
   initialValues,
   searchParamsPicker,
   validUrlQueryParamsFromProps,
-  validFilterParams,
   cleanSearchFromConflictingParams,
   createSearchResultSchema,
   pickListingFieldFilters,
@@ -46,8 +45,6 @@ import SearchResultsPanel from './SearchResultsPanel/SearchResultsPanel';
 import NoSearchResultsMaybe from './NoSearchResultsMaybe/NoSearchResultsMaybe';
 
 import css from './SearchPage.module.css';
-import { listingFields } from '../../config/configListing';
-import { listingImage } from '../../config/configLayout';
 
 const MODAL_BREAKPOINT = 768; // Search is in modal on mobile layout
 

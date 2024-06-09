@@ -8,8 +8,6 @@
   background: white;
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: var(--topbarHeightDesktop);
 }
 
 .mobileIcon {
@@ -80,18 +78,15 @@
 }
 
 .desktopInput {
-  composes: p from global;
-  position: relative;
   flex-grow: 1;
+  composes: p from global;
   background: rgb(232, 232, 232);
+  border: none;
   border-radius: 25px;
   /* Font */
-  height: 50%;
-  top: 25%;
-  margin-left: 20px;
   line-height: unset;
-  border: none;
-  padding-left: 20px;
+  padding: 7px 10px 7px 20px;
+  margin: 10px;
 
   /* Search text gets ellipsis if it's too wide */
   text-overflow: ellipsis;

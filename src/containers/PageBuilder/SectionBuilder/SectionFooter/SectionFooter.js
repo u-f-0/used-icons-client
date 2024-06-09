@@ -78,7 +78,7 @@ const SectionFooter = props => {
     >
       <div className={css.footer}>
         <div className={classNames(css.content, getContentCss(numberOfColumns))}>
-          <div>
+          {/* <div>
             <LinkedLogo
               rootClassName={css.logoLink}
               logoClassName={css.logoWrapper}
@@ -86,7 +86,7 @@ const SectionFooter = props => {
               linkToExternalSite={linkLogoToExternalSite}
               layout={logoLayout}
             />
-          </div>
+          </div> */}
           <div className={css.sloganMobile}>
             <Field data={slogan} className={css.slogan} />
           </div>

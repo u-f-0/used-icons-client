@@ -14,14 +14,14 @@ import css from './TopbarSearchForm.module.css';
 const identity = v => v;
 
 const KeywordSearchField = props => {
-  const { keywordSearchWrapperClasses, iconClass, intl, isMobile, inputRef } = props;
+  const { keywordSearchWrapperClasses, intl, isMobile, inputRef } = props;
   return (
     <div className={keywordSearchWrapperClasses}>
-      <button className={css.searchSubmit}>
+      {/* <button className={css.searchSubmit}>
         <div className={iconClass}>
           <IconSearchDesktop />
         </div>
-      </button>
+      </button> */}
       <Field
         name="keywords"
         render={({ input, meta }) => {
