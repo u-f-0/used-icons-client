@@ -295,7 +295,7 @@ class TopbarComponent extends Component {
       );
     };
 
-    const ProfileMenu = ({ currentPage, currentUser, onLogout }) => {
+    const ProfileMenu = ({ currentPage, currentUser }) => {
       const currentPageClass = page => {
         const isAccountSettingsPage =
           page === 'AccountSettingsPage' && ACCOUNT_SETTINGS_PAGES.includes(currentPage);
@@ -319,12 +319,9 @@ class TopbarComponent extends Component {
 
       return (
         <Menu>
-          <MenuLabel
-            className={cssDesktop.profileMenuLabel}
-            isOpenClassName={cssDesktop.profileMenuIsOpen}
-          >
+          <MenuLabel className={css.profileMenuLabel} isOpenClassName={css.profileMenuIsOpen}>
             {notificationDot}
-            <Avatar className={cssDesktop.avatar} user={currentUser} disableProfileLink />
+            <Avatar className={css.avatar} user={currentUser} disableProfileLink />
           </MenuLabel>
           <MenuContent className={css.profileMenuContent}>
             <MenuItem key="Greeting" className={css.greeting}>
@@ -412,6 +409,9 @@ class TopbarComponent extends Component {
     const initialSearchFormValues = topbarSearcInitialValues();
     const classes = classNames(rootClassName || css.root, className);
 
+    const hasMatchMedia = typeof window !== 'undefined' && window?.matchMedia;
+    const isMobileLayout = hasMatchMedia ? window.matchMedia(`(max-width: 600px`)?.matches : true;
+
     return (
       <div className={classes}>
         <LimitedAccessBanner
@@ -430,7 +430,14 @@ class TopbarComponent extends Component {
           >
             <MenuIcon className={css.menuIcon} />
           </Button>
-          {resolvedCurrentPage !== 'LandingPage' && (
+          {resolvedCurrentPage !== 'LandingPage' && !isMobileLayout && (
+            <LinkedLogo
+              layout={'desktop'}
+              alt={intl.formatMessage({ id: 'Topbar.logoIcon' })}
+              linkToExternalSite={config?.topbar?.logoLink}
+            />
+          )}
+          {isMobileLayout && (
             <LinkedLogo
               layout={'mobile'}
               alt={intl.formatMessage({ id: 'Topbar.logoIcon' })}
@@ -460,7 +467,7 @@ class TopbarComponent extends Component {
           </Button> */}
           {<TopbarRightNav {...this.props} />}
         </div>
-        <div className={css.desktop}>
+        {/* <div className={css.desktop}>
           <TopbarDesktop
             className={desktopClassName}
             currentUserHasListings={currentUserHasListings}
@@ -476,7 +483,7 @@ class TopbarComponent extends Component {
             config={config}
             customLinks={customLinks}
           />
-        </div>
+        </div> */}
         <Modal
           id="TopbarMobileMenu"
           containerClassName={css.modalContainer}

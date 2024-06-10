@@ -115,8 +115,8 @@ class Menu extends Component {
       if (windowWidth <= MAX_MOBILE_SCREEN_WIDTH) {
         // Take full screen width on mobile
         return {
-          left: -1 * (rect.left - 24),
-          width: 'calc(100vw - 48px)',
+          right: '0px',
+          width: '100%',
         };
       }
 

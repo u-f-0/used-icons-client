@@ -190,14 +190,44 @@
   }
 }
 
+/* Profile menu */
+.profileMenuLabel {
+  border-bottom: 0px solid;
+  transition: var(--transitionStyleButton);
+  font-weight: var(--fontWeightMedium);
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0;
+  color: var(--colorGrey700);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 10px;
+
+  &:active {
+    border-bottom: 0;
+  }
+}
+
+.avatar {
+  margin-left: 0px;
+}
+
+.profileMenuIsOpen {
+  &:hover {
+    border-bottom: 0;
+  }
+}
+
 .profileMenuContent {
   position: fixed;
   top: 0;
-  right: -300px; /* Initially hidden off-screen */
+  right: -300; /* Initially hidden off-screen */
   width: 300px;
   height: 100%;
   background-color: #fff;
-  overflow: auto;
   transition: right 0.3s ease;
   z-index: 999;
   padding: 20px;
@@ -209,12 +239,7 @@
 
 @media (--viewportSmall) {
   .profileMenuContent {
-    width: 100%; /* Full width on mobile devices */
-    right: -100%; /* Initially hidden off-screen */
-  }
-
-  .slide-menu.open {
-    right: 0; /* Slide in when open */
+    padding: 5rem 3rem;
   }
 }
 

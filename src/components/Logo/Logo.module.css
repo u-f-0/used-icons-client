@@ -8,6 +8,12 @@
   margin: 0;
 }
 
+@media (--viewportSmall) {
+  .root {
+    height: 70px;
+  }
+}
+
 .logo {
   /* If height is increased, change link margins accordingly */
   /* NOTE: extremely wide logos may look bad. This will scale them to container of 24 x 200. */
