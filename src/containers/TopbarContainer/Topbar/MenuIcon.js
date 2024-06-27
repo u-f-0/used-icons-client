@@ -10,17 +10,16 @@ const MenuIcon = props => {
 
   return (
     <svg
+      width="35"
       className={classes}
-      width="30"
-      height="24"
-      viewBox="0 0 18 12"
+      height="30"
+      viewBox="0 0 28 22"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g fillRule="evenodd">
-        <rect width="18" height="2" rx="1" />
-        <rect y="5" width="18" height="2" rx="1" />
-        <rect y="10" width="18" height="2" rx="1" />
-      </g>
+      <line y1="1.25" x2="28" y2="1.25" stroke="black" stroke-width="1.5" />
+      <line y1="21.25" x2="28" y2="21.25" stroke="black" stroke-width="1.5" />
+      <line y1="11.25" x2="28" y2="11.25" stroke="black" stroke-width="1.5" />
     </svg>
   );
 };

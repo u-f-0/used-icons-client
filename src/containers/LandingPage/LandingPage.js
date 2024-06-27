@@ -214,8 +214,8 @@ export const LandingPageComponent = props => {
     ? [
         logoSection,
         pageData.sections[0],
-        popularCategoriesSection,
-        listingCarouselSection,
+        // popularCategoriesSection,
+        // listingCarouselSection,
         pageData.sections[1],
       ]
     : pageData?.sections;

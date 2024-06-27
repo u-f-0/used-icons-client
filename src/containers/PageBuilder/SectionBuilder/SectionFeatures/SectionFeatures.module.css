@@ -17,6 +17,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   grid-auto-flow: dense;
   gap: 0;
 

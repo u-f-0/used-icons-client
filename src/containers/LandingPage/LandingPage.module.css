@@ -35,9 +35,9 @@
   display: flex;
   box-sizing: border-box;
   justify-content: center;
+  background: var(---colorWhite);
   max-height: 15svh;
   margin: 1rem 2rem;
-
   @media (--viewportSmall) {
     display: none;
   }
@@ -49,7 +49,7 @@
 }
 
 .categoriesWrapper {
-  background: white;
+  background: var(---colorWhite);
   padding: 2rem 2rem 0px 2rem;
   color: black;
 }

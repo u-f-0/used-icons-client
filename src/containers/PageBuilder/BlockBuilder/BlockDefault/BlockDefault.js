@@ -47,7 +47,12 @@ const BlockDefault = props => {
         <div className={classNames(textClassName, css.text)}>
           <Field data={title} options={options} />
           <Field data={text} options={options} />
-          <Field data={callToAction} className={ctaButtonClass} options={options} />
+          <div className={css.buttonContainer}>
+            <a className={css.browseButton} href="/s">
+              Browse All Listings
+            </a>
+            <Field data={callToAction} className={ctaButtonClass} options={options} />
+          </div>
         </div>
       ) : null}
     </BlockContainer>

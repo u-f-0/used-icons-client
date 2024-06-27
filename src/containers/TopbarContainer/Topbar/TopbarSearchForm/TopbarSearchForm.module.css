@@ -5,9 +5,14 @@
 }
 
 .desktopInputRoot {
-  background: white;
+  background: var(--colorWhite);
   display: flex;
   align-items: center;
+  max-width: 40%;
+
+  @media (--viewportSmall) {
+    max-width: 100%;
+  }
 }
 
 .mobileIcon {
@@ -80,32 +85,33 @@
 .desktopInput {
   flex-grow: 1;
   composes: p from global;
-  background: rgb(232, 232, 232);
+  background: var(--colorWhite);
   border: none;
-  border-radius: 25px;
+  border-bottom: 2px solid black;
+  border-radius: 0px;
   /* Font */
+  font-size: 14px;
   line-height: unset;
-  padding: 7px 10px 7px 20px;
-  margin: 10px;
+  padding: 5px 0px 5px 0px;
+  margin-left: 10px;
 
   /* Search text gets ellipsis if it's too wide */
   text-overflow: ellipsis;
   overflow-x: hidden;
 
-  margin-top: 0;
-  margin-bottom: 0;
-
   &:hover,
   &:focus {
-    background: rgb(232, 232, 232);
     outline: none;
-    border: 0;
     box-shadow: none;
+    background: var(--colorWhite);
+    border: none;
+    border-bottom: 2px solid black;
   }
 
   &:hover::placeholder,
   &:focus::placeholder {
     color: var(--colorGrey700);
+    outline: none;
   }
 
   /* Placeholder text might be too wide */
