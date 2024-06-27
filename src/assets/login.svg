@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 8L16 12M16 12L12 16M16 12H3M3.33782 7C5.06687 4.01099 8.29859 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.29859 22 5.06687 19.989 3.33782 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.34668 13.7601C5.25337 6.29337 12.5068 1 21.0002 1C32.0402 1 41.0003 9.96007 41.0003 21.0002C41.0003 32.0402 32.0402 41.0003 21.0002 41.0003C12.5068 41.0003 5.25337 35.7069 2.34668 28.2402" stroke="black" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M20.0532 13.7601L27.5599 20.7469L20.5732 28.2402" stroke="black" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M27.5602 20.7468H1" stroke="black" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
 </svg>
